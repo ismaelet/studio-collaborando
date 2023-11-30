@@ -1,0 +1,45 @@
+@push('styles')
+    <style>
+        .main-header {
+            position: relative;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            padding-inline: var(--content-padding);
+            background: var(--clr-background);
+            transition: background 0.2s;
+        }
+
+        .main-header[data-local-theme='dark']:not(:has(.mobile-navigation[data-navigation-status="open"])) {
+            color: #fff;
+        }
+
+        .main-header[data-floating='true'] {
+            position: absolute;
+        }
+
+        .main-header[data-floating='true']:not(:has(.mobile-navigation[data-navigation-status="open"])) {
+            background: linear-gradient(180deg, rgba(0, 0, 0, 0.20) 0%, rgba(0, 0, 0, 0.00) 40%);
+        }
+
+        .desktop-header {
+            @media (max-width: 1024px) {
+                display: none !important;
+            }
+        }
+
+        .mobile-header {
+            @media (min-width: 1025px) {
+                display: none !important;
+            }
+        }
+    </style>
+@endpush
+
+<header class="main-header" data-local-theme="{{ $config['theme'] ?? 'light' }}"
+    data-floating="{{ !empty($config['floating']) ? 'true' : 'false' }}"
+    data-sticky="{{ !empty($config['sticky']) ? 'true' : 'false' }}">
+    <x-navigation.header.desktop-header class="desktop-header" />
+    <x-navigation.header.mobile-header class="mobile-header" />
+</header>
