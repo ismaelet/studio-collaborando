@@ -1,0 +1,40 @@
+<?php
+
+namespace App\Http\Controllers\Auth;
+
+use App\Http\Controllers\Controller;
+use App\Models\User;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
+
+class RegisterController extends Controller {
+	public function index() {
+		return view('pages.auth.register')
+			->with('locationTag', 'login')
+			->with('title', 'Registrati');
+	}
+
+	public function store(Request $request) {
+		// validation
+		$this->validate($request, [
+			'first_name' => 'required|max:255',
+			'last_name' => 'required|max:255',
+			'email' => 'required|email|max:255',
+			'password' => 'required|confirmed',
+		]);
+
+		// store the user
+		User::create([
+			'first_name' => $request->first_name,
+			'last_name' => $request->last_name,
+			'email' => $request->email,
+			'password' => Hash::make($request->password),
+		]);
+
+		// sign in the user
+		auth()->attempt($request->only('email', 'password'));
+
+		// redirect
+		return redirect()->route('user-dashboard');
+	}
+}

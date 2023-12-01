@@ -2,7 +2,6 @@
 
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
-use App\Http\Controllers\UserDashboardController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -41,32 +40,17 @@ Route::get('/contacts', function () {
 	abort(404);
 })->name('contacts');
 
-// Auth
-Route::get('/login', function () {
-	abort(404);
-})->name('login');
-Route::post('/login', function () {
-	abort(404);
-});
-
-Route::get('/register', function () {
-	abort(404);
-})->name('register');
-Route::post('/register', function () {
-	abort(404);
-});
-
 // Profile
 Route::get('/profile', function () {
 	abort(404);
 })->name('user-dashboard');
 
 // Auth
-// Route::get('/login', [LoginController::class, 'index'])->name('login');
-// Route::post('/login', [LoginController::class, 'auth']);
+Route::get('/login', [LoginController::class, 'index'])->name('login');
+Route::post('/login', [LoginController::class, 'auth']);
 
-// Route::get('/register', [RegisterController::class, 'index'])->name('register');
-// Route::post('/register', [RegisterController::class, 'store']);
+Route::get('/register', [RegisterController::class, 'index'])->name('register');
+Route::post('/register', [RegisterController::class, 'store']);
 
 // Profile
 // Route::get('/profile', [UserDashboardController::class, 'index'])->name('user-dashboard');
