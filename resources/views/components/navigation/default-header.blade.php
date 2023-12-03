@@ -7,11 +7,11 @@
             right: 0;
             z-index: 100;
             padding-inline: var(--content-padding);
-            background: var(--clr-background);
+            /* background: var(--clr-background); */
             transition: background 0.2s;
         }
 
-        .main-header[data-local-theme='dark']:not(:has(.mobile-navigation[data-navigation-status="open"])) {
+        .main-header[data-local-theme='dark']:not([data-navigation-status="open"]) {
             color: #fff;
         }
 
@@ -19,7 +19,7 @@
             position: absolute;
         }
 
-        .main-header[data-floating='true']:not(:has(.mobile-navigation[data-navigation-status="open"])) {
+        .main-header[data-floating='true']:not([data-navigation-status="open"]) {
             background: linear-gradient(180deg, rgba(0, 0, 0, 0.20) 0%, rgba(0, 0, 0, 0.00) 40%);
         }
 
@@ -39,7 +39,9 @@
 
 <header class="main-header" data-local-theme="{{ $config['theme'] ?? 'light' }}"
     data-floating="{{ !empty($config['floating']) ? 'true' : 'false' }}"
-    data-sticky="{{ !empty($config['sticky']) ? 'true' : 'false' }}">
+    data-sticky="{{ !empty($config['sticky']) ? 'true' : 'false' }}" x-data="{ open: false }"
+    :class="open ? 'bg-background' : ''" :data-navigation-status="open ? 'open' : 'closed'"
+    @toggle_mobile_navigation.window="open = ! open">
     <x-navigation.header.desktop-header class="desktop-header" />
     <x-navigation.header.mobile-header class="mobile-header" />
 </header>

@@ -28,19 +28,20 @@
 @endpush
 
 <div class="mobile-header border-bottom">
-    <!-- Left bar -->
+    {{-- Left bar --}}
     <div class="mobile-header__column">
         <x-navigation.header.logo />
     </div>
 
-    <!-- Center bar -->
+    {{-- Center bar --}}
     <div class="mobile-header__column">
     </div>
 
-    <!-- Right bar -->
+    {{-- Right bar --}}
     <div class="mobile-header__column">
-        <livewire:navigation.header.hamburger-icon />
+        <x-navigation.header.hamburger-icon />
     </div>
 
+    {{-- Mobile navigation --}}
     <x-navigation.header.mobile-navigation />
 </div>

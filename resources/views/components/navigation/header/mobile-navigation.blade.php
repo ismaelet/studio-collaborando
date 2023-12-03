@@ -7,10 +7,9 @@
             inset: 0;
             z-index: 110;
             padding-inline: var(--content-padding);
-            background-color: var(--clr-background);
             transition: opacity 200ms;
 
-            &:not([data-navigation-status="open"]) {
+            &:not([data-status="open"]) {
                 opacity: 0;
                 pointer-events: none;
 
@@ -70,8 +69,8 @@
     </style>
 @endpush
 
-
-<nav class="mobile-navigation" data-navigation-status="closed">
+<nav class="mobile-navigation pt-15 bg-background" x-data="{ open: false }" @toggle_mobile_navigation.window="open = ! open"
+    :data-status="open ? 'open' : 'closed'">
     <ul>
         @foreach (config('custom.navigation_links') as $link)
             <x-navigation.header.mobile-link :$link />

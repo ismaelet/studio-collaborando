@@ -1,14 +1,14 @@
 @push('styles')
     <style>
         .hamburger-icon {
-            --_height: 1.4rem;
+            --_height: 1.2rem;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
             align-items: flex-end;
             position: relative;
             z-index: 120;
-            height: 1.4rem;
+            height: var(--_height);
             aspect-ratio: 1.375;
             cursor: pointer;
 
@@ -32,8 +32,8 @@
                 }
             }
 
-            &[data-navigation-status="open"] {
-                position: absolute;
+            &[data-status="open"] {
+                position: relative;
                 z-index: 120;
 
                 & span {
@@ -62,8 +62,10 @@
     </style>
 @endpush
 
-<div class="hamburger-icon" wire:click="toggleMenu" data-navigation-status="{{ $open ? 'open' : 'closed' }}">
-    <span></span>
-    <span></span>
-    <span></span>
+<div x-data="{ open: false }" @toggle_mobile_navigation.window="open = ! open">
+    <div class="hamburger-icon" :data-status="open ? 'open' : 'closed'" @click="$dispatch('toggle_mobile_navigation')">
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
 </div>

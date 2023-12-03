@@ -89,7 +89,7 @@
 
     /* 2.2. Basic stup */
     body {
-        background-color: var(--clr-background);
+        background-color: hsl(var(--color-background-400-hsl));
     }
 
     @media (max-width: 640px) {
@@ -97,16 +97,11 @@
             --fs-300: 14px;
             --fs-400: 16px;
         }
-
-        html {
-            font-size: 80%;
-        }
     }
 
     /* 2.3 Typography */
     body {
-        color: var(--fc-400);
-        font-family: var(--ff-default);
+		color: var(--color-text-400);
         font-size: var(--fs-400);
         font-weight: var(--fs-400);
         line-height: 1.6;
@@ -115,15 +110,7 @@
     h1,
     h2,
     h3 {
-        color: var(--fc-700);
-        font-family: var(--ff-titles);
         text-wrap: balance;
-    }
-
-    @media (max-width: 640px) {
-        body {
-            font-size: var(--fs-400);
-        }
     }
 
     /* 2.4 Form components */
@@ -1221,12 +1208,6 @@
     }
 
     /* 5.4 Typography */
-    .heading-like {
-        color: var(--fc-700);
-        font-family: var(--ff-titles);
-        text-wrap: balance;
-    }
-
     .vertical-text {
         writing-mode: vertical-rl;
         text-orientation: mixed;

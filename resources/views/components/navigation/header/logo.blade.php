@@ -1,11 +1,7 @@
-<a href="{{ route('home') }}" class="main-header__logo">
-    {{ import_svg('logo/header-logo') }}
-</a>
-
 @push('styles')
     <style>
         .main-header__logo {
-            width: 3.5rem;
+            width: 3rem;
             height: auto;
 
             [data-local-theme="dark"] & .fc-700 {
@@ -14,3 +10,7 @@
         }
     </style>
 @endpush
+
+<a href="{{ route('home') }}" class="main-header__logo">
+    {{ import_svg('logo/header-logo') }}
+</a>
