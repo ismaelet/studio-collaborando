@@ -1,20 +1,38 @@
+/*
+* Imports
+*/
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Libre+Caslon+Display&display=swap');
 
+/*
+* Global variables
+*/
 @layer base {
-    :root {
-        /* colors */
-		--color-primary-400-hsl: 204deg 18% 50%;
+	:root {
+		/* colors */
+		--color-primary-200-hsl: 204deg 18% 85%;
+		--color-primary-300-hsl: 204deg 40% 78%;
+		--color-primary-400-hsl: 204deg 18% 56%;
+		--color-primary-500-hsl: 204deg 18% 35%;
+		--color-primary-700-hsl: 204deg 18% 25%;
+
+		--color-secondary-400-hsl: 356deg 53% 70%;
+
+		--color-neutral-200-hsl: 0deg 0% 87%;
+		--color-neutral-400-hsl: 0deg 0% 31%;
+		--color-neutral-700-hsl: 0deg 0% 13%;
 
 		--color-background-400-hsl: 0deg 0% 100%;
 
-		--color-text-400: #505050;
-		--color-text-700: #202020;
+		--color-surface-100-hsl: 204deg 18% 95%;
+
+		/* borders */
+		--border-width: 1px;
 
 		/* containers */
-        --content-width: 1200px;
-        --breakout-width: 1400px;
-        --content-padding: 2rem;
-    }
+		--content-width: 1200px;
+		--breakout-width: 1400px;
+		--content-padding: 2rem;
+	}
 }

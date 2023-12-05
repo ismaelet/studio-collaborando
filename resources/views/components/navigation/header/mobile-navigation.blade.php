@@ -72,7 +72,7 @@
 <nav class="mobile-navigation pt-15 bg-background" x-data="{ open: false }" @toggle_mobile_navigation.window="open = ! open"
     :data-status="open ? 'open' : 'closed'">
     <ul>
-        @foreach (config('custom.navigation_links') as $link)
+        @foreach (config('custom.header_navigation_links') as $link)
             <x-navigation.header.mobile-link :$link />
         @endforeach
     </ul>

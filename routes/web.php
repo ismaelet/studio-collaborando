@@ -20,37 +20,45 @@ Route::get('/', function () {
 	return view('pages.home');
 })->name('home');
 
-Route::get('/home', function () {
-	return view('pages.home');
-})->name('home');
-
 Route::get('/services', function () {
-	abort(404);
+	abort(503);
 })->name('services');
 
 Route::get('/pet-therapy', function () {
-	abort(404);
+	abort(503);
+	abort(503);
 })->name('pet-therapy');
 
 Route::get('/courses', function () {
-	abort(404);
+	abort(503);
 })->name('courses');
 
 Route::get('/contacts', function () {
-	abort(404);
+	abort(503);
 })->name('contacts');
 
 // Profile
 Route::get('/profile', function () {
-	abort(404);
+	abort(503);
 })->name('user-dashboard');
 
 // Auth
-Route::get('/login', [LoginController::class, 'index'])->name('login');
-Route::post('/login', [LoginController::class, 'auth']);
+Route::get('/login', function () {
+	abort(503);
+})->name('login');
+Route::get('/register', function () {
+	abort(503);
+})->name('login');
+// Route::get('/login', [LoginController::class, 'index'])->name('login');
+// Route::post('/login', [LoginController::class, 'auth']);
 
-Route::get('/register', [RegisterController::class, 'index'])->name('register');
-Route::post('/register', [RegisterController::class, 'store']);
+// Route::get('/register', [RegisterController::class, 'index'])->name('register');
+// Route::post('/register', [RegisterController::class, 'store']);
 
 // Profile
 // Route::get('/profile', [UserDashboardController::class, 'index'])->name('user-dashboard');
+
+// Misc
+Route::get('/privacy', function () {
+	abort(503);
+})->name('privacy');

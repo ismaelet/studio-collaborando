@@ -1,27 +1,38 @@
 services:
-    laravel-php:
+    laravel:
         build:
             context: .
             dockerfile: ./Dockerfile
+        working_dir: /var/www/html
         volumes:
-            - ".:/var/www/html"
+            - .:/var/www/html
         ports:
-            - "80:80"
-            - "5173:5173"
+            - '80:80'
+        command: php artisan serve --host=0.0.0.0 --port=80
+        networks:
+            - internal
+    vite:
+        image: node:latest
+        working_dir: /app
+        volumes:
+            - .:/app
+        ports:
+            - '5173:5173'
+        command: npm run dev
         depends_on:
-            - mysql
+            - laravel
         networks:
             - internal
     mysql:
-        image: "mysql:latest"
+        image: 'mysql:latest'
         ports:
-            - "3306:3306"
+            - '3306:3306'
         environment:
             MYSQL_ROOT_PASSWORD: ${DB_PASSWORD}
             MYSQL_DATABASE: ${DB_DATABASE}
             MYSQL_ALLOW_EMPTY_PASSWORD: 1
         volumes:
-            - "mysql:/var/lib/mysql"
+            - 'mysql:/var/lib/mysql'
         networks:
             - internal
         restart: unless-stopped

@@ -1,18 +1,11 @@
 @php
     $currentLocation = $locationTag ?? Request::route()->getName();
+    $isActive = $link['location_tag'] == $currentLocation;
 @endphp
 
-@push('styles')
+@pushOnce('styles')
     <style>
-        .desktop-navigation__link {
-            padding-block: 1.25em;
-            font-weight: var(--fw-regular);
-            line-height: normal;
-
-            &.active[data-type="link"] {
-                font-weight: var(--fw-semibold);
-            }
-
+        .desktop-navigation__link[data-type="link"] {
             & a::after {
                 content: '';
                 display: block;
@@ -29,24 +22,16 @@
                 scale: 1;
             }
         }
-
-        .desktop-navigation__link[data-type="button"] {
-            padding: 0;
-
-            & a {
-                border: var(--border-width) solid currentColor;
-                padding: .75rem 2rem;
-                border-radius: var(--border-radius-1000);
-            }
-
-            & a::after {
-                content: none;
-            }
-        }
     </style>
-@endpush
+@endPushOnce
 
-<li class="desktop-navigation__link ff-titles {{ $link['location_tag'] == $currentLocation ? 'active' : '' }}"
-    data-type="{{ $link['type'] }}">
-    <a href="{{ route($link['url']) }}">{{ is_string($link['label']) ? $link['label'] : $link['label'][0] }}</a>
+<li class="desktop-navigation__link" data-type="{{ $link['type'] }}">
+    <a href="{{ route($link['url']) }}"
+        @class([
+            'font-heading',
+            'my-5' => $link['type'] == 'link',
+            'py-3 px-8 border rounded-full' => $link['type'] == 'button',
+            'font-light' => !$isActive,
+            'font-medium' => $isActive && $link['type'] == 'link',
+        ])>{{ is_string($link['label']) ? $link['label'] : $link['label'][0] }}</a>
 </li>
