@@ -1,13 +1,9 @@
 /** @type {import('tailwindcss').Config} */
 export default {
-	content: ['./resources/**/*.blade.php', './resources/**/*.js', './resources/**/*.vue'],
+	content: ['./resources/**/*.blade.php', './resources/**/*.js'],
 	theme: {
-		fontFamily: {
-			sans: ['Open Sans', 'Arial', 'sans-serif'],
-			heading: ['Poppins', 'Arial', 'sans-serif'],
-			serif: ['Libre Caslon Display', 'Georgia', 'Cambria', 'Times New Roman', 'serif'],
-		},
 		colors: {
+			// Primary
 			primary: 'hsl(var(--color-primary-400-hsl) / <alpha-value>)',
 			'primary-200': 'hsl(var(--color-primary-200-hsl) / <alpha-value>)',
 			'primary-300': 'hsl(var(--color-primary-300-hsl) / <alpha-value>)',
@@ -15,49 +11,115 @@ export default {
 			'primary-500': 'hsl(var(--color-primary-500-hsl) / <alpha-value>)',
 			'primary-700': 'hsl(var(--color-primary-700-hsl) / <alpha-value>)',
 
+			// Secondary
 			secondary: 'hsl(var(--color-secondary-400-hsl) / <alpha-value>)',
 			'secondary-400': 'hsl(var(--color-secondary-400-hsl) / <alpha-value>)',
 
+			// Neutral light
+			'neutral-light-100': 'hsl(var(--color-neutral-light-100-hsl) / <alpha-value>)',
+			'neutral-light-200': 'hsl(var(--color-neutral-light-200-hsl) / <alpha-value>)',
+			'neutral-light-400': 'hsl(var(--color-neutral-light-400-hsl) / <alpha-value>)',
+			'neutral-light-700': 'hsl(var(--color-neutral-light-700-hsl) / <alpha-value>)',
+			'neutral-light-900': 'hsl(var(--color-neutral-light-900-hsl) / <alpha-value>)',
+
+			// Neutral dark
+			'neutral-dark-900': 'hsl(var(--color-neutral-dark-900-hsl) / <alpha-value>)',
+
+			// Neutral theme
+			'neutral-100': 'hsl(var(--color-neutral-100-hsl) / <alpha-value>)',
 			'neutral-200': 'hsl(var(--color-neutral-200-hsl) / <alpha-value>)',
 			'neutral-400': 'hsl(var(--color-neutral-400-hsl) / <alpha-value>)',
 			'neutral-700': 'hsl(var(--color-neutral-700-hsl) / <alpha-value>)',
+			'neutral-900': 'hsl(var(--color-neutral-900-hsl) / <alpha-value>)',
 
+			// Background
 			background: 'hsl(var(--color-background-400-hsl) / <alpha-value>)',
 			'background-400': 'hsl(var(--color-background-400-hsl) / <alpha-value>)',
+			'background-500': 'hsl(var(--color-background-500-hsl) / <alpha-value>)',
 
-			'surface-100': 'hsl(var(--color-surface-100-hsl) / <alpha-value>)',
+			// Surfaces
+			'surface-400': 'hsl(var(--color-surface-400-hsl) / <alpha-value>)',
+			'surface-700': 'hsl(var(--color-surface-700-hsl) / <alpha-value>)',
 		},
-		borderRadius: {
-			none: '0',
-			sm: '0.5rem',
-			DEFAULT: '1rem',
-			lg: '2rem',
-			full: '9999px',
+		borderWidth: {
+			DEFAULT: 'var(--border-width)',
+		},
+		fontFamily: {
+			sans: 'var(--font-family-paragraph)',
+			heading: 'var(--font-family-heading)',
+			serif: 'var(--font-family-serif)',
 		},
 		extend: {
-			borderWidth: {
-				DEFAULT: 'var(--border-width)',
-			},
 			height: {
 				'screen-min': '100svh',
 			},
 			fontSize: {
-				title: [
-					'min(4rem,13vw)',
+				// Headings
+				'main-heading': [
+					'var(--font-size-900)',
 					{
-						lineHeight: 1,
-						letterSpacing: '0.3',
-						fontWeight: '400',
+						fontWeight: 'var(--font-weight-bold)',
+						letterSpacing: '0.03em',
+						lineHeight: '1.1',
 					},
 				],
-				subtitle: [
-					'min(1.25rem,5.5vw)',
+				'section-heading': [
+					'var(--font-size-800)',
 					{
-						// lineHeight: 1,
-						// letterSpacing: '0.3',
-						// fontWeight: '400',
+						fontWeight: 'var(--font-weight-bold)',
+						letterSpacing: '0.03em',
+						lineHeight: '1.2',
 					},
 				],
+				'article-heading': [
+					'var(--font-size-700)',
+					{
+						fontWeight: 'var(--font-weight-semibold)',
+						letterSpacing: '0.03em',
+						lineHeight: '1.2',
+					},
+				],
+
+				// Subheadings
+				'main-sub-heading': [
+					'var(--font-size-700)',
+					{
+						fontWeight: 'var(--font-weight-semibold)',
+						letterSpacing: '0.05em',
+						lineHeight: '1.2',
+					},
+				],
+				'section-sub-heading': [
+					'var(--font-size-700)',
+					{
+						fontWeight: 'var(--font-weight-semibold)',
+						letterSpacing: '0.05em',
+						lineHeight: '1.2',
+					},
+				],
+				'article-sub-heading': [
+					'var(--font-size-700)',
+					{
+						fontWeight: 'var(--font-weight-semibold)',
+						letterSpacing: '0.05em',
+						lineHeight: '1.2',
+					},
+				],
+
+				// Paragraphs
+				'big-paragraph': [
+					'1.25rem',
+					{
+						lineHeight: '1.75',
+					},
+				],
+				paragraph: [
+					'var(--font-size-400)',
+					{
+						lineHeight: '1.75',
+					},
+				],
+				'small-paragraph': ['var(--font-size-300)', {}],
 			},
 		},
 	},

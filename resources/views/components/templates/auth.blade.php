@@ -16,7 +16,7 @@
     </style>
 @endpush
 
-<x-templates.default :header-config="['floating' => true]">
+<x-templates.main :header-config="['floating' => true]">
     <div class="page__content grid-flow full-width justify-items-center">
         <section class="welcome fill-all">
             {{ $welcome }}
@@ -38,4 +38,4 @@
             </div>
         </form>
     </div>
-</x-templates.default>
+</x-templates.main>

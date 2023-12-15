@@ -17,7 +17,7 @@ use Illuminate\Support\Facades\Route;
 
 // App routes
 Route::get('/', function () {
-	return view('pages.home');
+	return view('home');
 })->name('home');
 
 Route::get('/services', function () {

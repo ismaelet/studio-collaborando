@@ -1,5 +1,9 @@
 @push('styles')
     <style>
+        .header-container {
+            grid-area: header;
+        }
+
         .main-header {
             position: relative;
             top: 0;
@@ -37,11 +41,13 @@
     </style>
 @endpush
 
-<header class="main-header" data-local-theme="{{ $config['theme'] ?? 'light' }}"
-    data-floating="{{ !empty($config['floating']) ? 'true' : 'false' }}"
-    data-sticky="{{ !empty($config['sticky']) ? 'true' : 'false' }}" x-data="{ open: false }"
-    :class="open ? 'bg-background' : ''" :data-navigation-status="open ? 'open' : 'closed'"
-    @toggle_mobile_navigation.window="open = ! open">
-    <x-navigation.header.desktop-header class="desktop-header" />
-    <x-navigation.header.mobile-header class="mobile-header" />
-</header>
+<div class="header-container">
+    <header class="main-header" data-local-theme="{{ $config['theme'] ?? 'light' }}"
+        data-floating="{{ !empty($config['floating']) ? 'true' : 'false' }}"
+        data-sticky="{{ !empty($config['sticky']) ? 'true' : 'false' }}" x-data="{ open: false }"
+        :class="open ? 'bg-background' : ''" :data-navigation-status="open ? 'open' : 'closed'"
+        @toggle_mobile_navigation.window="open = ! open">
+        <x-navigation.header.desktop-header class="desktop-header" />
+        <x-navigation.header.mobile-header class="mobile-header" />
+    </header>
+</div>

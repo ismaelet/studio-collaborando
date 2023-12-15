@@ -1,8 +1,5 @@
-@push('styles')
-@endpush
+<x-templates.main :header-config="['theme' => 'dark', 'floating' => true]">
 
-<x-templates.default :header-config="['theme' => 'dark', 'floating' => true]">
+    <x-pages.home.slider />
 
-
-
-</x-templates.default>
+</x-templates.main>

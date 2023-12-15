@@ -6,11 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="{{ $description ?? $appDescription }}">
     <meta property="og:image" content="{{ Vite::image('thumbnail.jpg') }}">
-    <link rel="icon" href="/favicon.ico">
+    <link rel="icon" href="{{ asset('favicon.ico') }}">
     <title>{{ isset($title) ? $title . ' | ' . $appName : $appName }}</title>
 
     <livewire:styles />
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
+    @vite(['resources/css/main.css', 'resources/js/app.js'])
     @stack('styles')
 
 </head>
