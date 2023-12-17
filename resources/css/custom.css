@@ -35,9 +35,9 @@
 		* 2.1. Colors
 		*/
 		/* 2.1.1 Primary */
-		--color-primary-300-hsl: 247deg 70% 78%;
-		--color-primary-400-hsl: 35deg 100% 50%;
-		--color-primary-500-hsl: 30deg 100% 45%;
+		--color-primary-300-hsl: 204deg 21% 78%;
+		--color-primary-400-hsl: 204deg 21% 56%;
+		--color-primary-500-hsl: 204deg 21% 35%;
 
 		/* 2.1.2 Secondary */
 		--color-secondary-400-hsl: 241deg 81% 54%;
@@ -90,7 +90,7 @@
 		--font-size-400: 1rem;
 		--font-size-700: min(2rem, 6vw);
 		--font-size-800: min(3rem, 10vw);
-		--font-size-900: min(5rem, 15vw);
+		--font-size-900: min(4rem, 15vw);
 
 		/* 2.3.3 Font weight */
 		--font-weight-thin: 100;

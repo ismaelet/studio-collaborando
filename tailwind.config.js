@@ -58,9 +58,9 @@ export default {
 				'main-heading': [
 					'var(--font-size-900)',
 					{
-						fontWeight: 'var(--font-weight-bold)',
-						letterSpacing: '0.03em',
-						lineHeight: '1.1',
+						fontWeight: 'var(--font-weight-regular)',
+						letterSpacing: '0.05em',
+						lineHeight: '0.9',
 					},
 				],
 				'section-heading': [
