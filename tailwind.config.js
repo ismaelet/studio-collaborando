@@ -5,6 +5,7 @@ export default {
 		colors: {
 			// Primary
 			primary: 'hsl(var(--color-primary-400-hsl) / <alpha-value>)',
+			'primary-100': 'hsl(var(--color-primary-100-hsl) / <alpha-value>)',
 			'primary-200': 'hsl(var(--color-primary-200-hsl) / <alpha-value>)',
 			'primary-300': 'hsl(var(--color-primary-300-hsl) / <alpha-value>)',
 			'primary-400': 'hsl(var(--color-primary-400-hsl) / <alpha-value>)',
@@ -40,6 +41,10 @@ export default {
 			// Surfaces
 			'surface-400': 'hsl(var(--color-surface-400-hsl) / <alpha-value>)',
 			'surface-700': 'hsl(var(--color-surface-700-hsl) / <alpha-value>)',
+
+			// Utility colors
+			success: 'hsl(var(--color-success-400-hsl) / <alpha-value>)',
+			error: 'hsl(var(--color-error-400-hsl) / <alpha-value>)',
 		},
 		borderWidth: {
 			DEFAULT: 'var(--border-width)',
@@ -59,11 +64,19 @@ export default {
 					'var(--font-size-900)',
 					{
 						fontWeight: 'var(--font-weight-regular)',
-						letterSpacing: '0.05em',
-						lineHeight: '0.9',
+						letterSpacing: '0.15em',
+						lineHeight: '1.1',
 					},
 				],
 				'section-heading': [
+					'var(--font-size-800)',
+					{
+						fontWeight: 'var(--font-weight-regular)',
+						letterSpacing: '0.03em',
+						lineHeight: '1.2',
+					},
+				],
+				'sans-section-heading': [
 					'var(--font-size-800)',
 					{
 						fontWeight: 'var(--font-weight-bold)',

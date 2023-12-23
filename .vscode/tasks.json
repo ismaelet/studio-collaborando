@@ -1,0 +1,26 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"label": "Artisan: Create Controller",
+			"type": "shell",
+			"command": "php",
+			"args": ["artisan", "make:controller", "${input:controllerName}"],
+			"group": {
+				"kind": "build",
+				"isDefault": true
+			},
+			"presentation": {
+				"reveal": "always"
+			}
+		}
+	],
+	"inputs": [
+		{
+			"id": "controllerName",
+			"type": "promptString",
+			"default": "ExampleController",
+			"description": "Enter the controller name"
+		}
+	]
+}

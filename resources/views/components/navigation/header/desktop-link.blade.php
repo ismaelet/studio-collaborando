@@ -22,10 +22,14 @@
                 scale: 1;
             }
         }
+
+        .main-header:not(data-local-theme="dark") .desktop-navigation__link:has(a:hover) {
+            color: var(--color-primary-400);
+        }
     </style>
 @endPushOnce
 
-<li class="desktop-navigation__link" data-type="{{ $link['type'] }}">
+<li class="desktop-navigation__link transition-colors" data-type="{{ $link['type'] }}">
     <a href="{{ route($link['url']) }}"
         @class([
             'font-heading',

@@ -6,12 +6,19 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
 class LoginController extends Controller {
+
+	/**
+	 * Render the login page
+	 */
 	public function index() {
-		return view('pages.auth.login')
+		return view('auth.login')
 			->with('locationTag', 'login')
 			->with('title', 'Login');
 	}
 
+	/**
+	 * Authenticate the user
+	 */
 	public function auth(Request $request) {
 		// validation
 		$this->validate($request, [

@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\UserDashboard\UserDashboard;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,7 +16,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// App routes
+/**
+ * App routes
+ */
 Route::get('/', function () {
 	abort(503);
 })->name('home');
@@ -37,26 +40,40 @@ Route::get('/contacts', function () {
 	abort(503);
 })->name('contacts');
 
-// Profile
-Route::get('/profile', function () {
-	abort(503);
-})->name('user-dashboard');
+/**
+ * Auth routes
+ */
+Route::get('/login', [LoginController::class, 'index'])->name('login');
+Route::post('/login', [LoginController::class, 'auth']);
 
-// Auth
-Route::get('/login', function () {
-	abort(503);
-})->name('login');
 Route::get('/register', function () {
 	abort(503);
-})->name('login');
-// Route::get('/login', [LoginController::class, 'index'])->name('login');
-// Route::post('/login', [LoginController::class, 'auth']);
+})->name('register');
 
-// Route::get('/register', [RegisterController::class, 'index'])->name('register');
-// Route::post('/register', [RegisterController::class, 'store']);
+Route::get('/register', function () {
+	abort(503);
+})->name('register');
 
-// Profile
-// Route::get('/profile', [UserDashboardController::class, 'index'])->name('user-dashboard');
+Route::get('/logout', function () {
+	abort(503);
+})->name('logout');
+
+/**
+ * User dashboard routes
+ */
+Route::get('/user-dashboard', [UserDashboard::class, 'index'])->name('user-dashboard');
+
+Route::get('/user-dashboard/recap', function () {
+	abort(503);
+})->name('user-dashboard.recap');
+
+Route::get('/user-dashboard/courses', function () {
+	abort(503);
+})->name('user-dashboard.courses');
+
+Route::get('/user-dashboard/personal-data', function () {
+	abort(503);
+})->name('user-dashboard.personal-data');
 
 // Misc
 Route::get('/privacy', function () {

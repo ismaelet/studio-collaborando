@@ -9,7 +9,7 @@
     </style>
 @endpush
 
-<footer class="main-footer grid justify-items-center bg-surface-100 border-t-4 border-primary-200">
+<footer class="main-footer grid justify-items-center bg-primary-100 border-t-[5px] border-primary-200">
     <div class="main-footer__body w-full lg:grid gap-12">
         <x-navigation.footer.aside />
 

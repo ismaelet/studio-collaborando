@@ -9,6 +9,7 @@
 		2.1.5 Neutral theme
 		2.1.6 Background
 		2.1.7 Surfaces
+		2.1.8 Utility colors
 *	2.2. Borders
 *	2.3. Typography
 		2.3.1 Font family
@@ -35,16 +36,19 @@
 		* 2.1. Colors
 		*/
 		/* 2.1.1 Primary */
+		--color-primary-100-hsl: 204deg 18% 95%;
+		--color-primary-200-hsl: 204deg 18% 85%;
 		--color-primary-300-hsl: 204deg 21% 78%;
 		--color-primary-400-hsl: 204deg 21% 56%;
 		--color-primary-500-hsl: 204deg 21% 35%;
 
 		/* 2.1.2 Secondary */
-		--color-secondary-400-hsl: 241deg 81% 54%;
-		--color-secondary-500-hsl: 241deg 72% 46%;
+		--color-secondary-400-hsl: 356deg 53% 70%;
 
 		/* 2.1.3 Neutral light */
 		--color-neutral-light-100-hsl: 0deg 0% 100%;
+		--color-neutral-light-200-hsl: 0deg 0% 93%;
+		--color-neutral-light-300-hsl: 0deg 0% 87%;
 		--color-neutral-light-400-hsl: 0deg 0% 25%;
 		--color-neutral-light-700-hsl: 0deg 0% 13%;
 		--color-neutral-light-900-hsl: 0deg 0% 0%;
@@ -55,6 +59,8 @@
 
 		/* 2.1.5 Theme neutral */
 		--color-neutral-100-hsl: var(--color-neutral-light-100-hsl);
+		--color-neutral-200-hsl: var(--color-neutral-light-200-hsl);
+		--color-neutral-300-hsl: var(--color-neutral-light-300-hsl);
 		--color-neutral-400-hsl: var(--color-neutral-light-400-hsl);
 		--color-neutral-700-hsl: var(--color-neutral-light-700-hsl);
 		--color-neutral-900-hsl: var(--color-neutral-light-900-hsl);
@@ -66,11 +72,15 @@
 		/* 2.1.7 Surfaces */
 		--color-surface-700-hsl: 0deg 0% 70%;
 
+		/* 2.1.8 Utility colors */
+		--color-success-400-hsl: 145deg 63% 50%;
+		--color-error-400-hsl: 0deg 100% 50%;
+
 		/*
 		* 2.2. Borders
 		*/
 		--border-width: 1px;
-		--border-color: var(--color-neutral-400);
+		--border-color: var(--color-neutral-200);
 		--border: var(--border-width) solid var(--border-color);
 		--border-radius-400: 1rem;
 		--border-radius-700: 2rem;
@@ -89,7 +99,7 @@
 		--font-size-300: 0.875rem;
 		--font-size-400: 1rem;
 		--font-size-700: min(2rem, 6vw);
-		--font-size-800: min(3rem, 10vw);
+		--font-size-800: min(3rem, 12.5vw);
 		--font-size-900: min(4rem, 15vw);
 
 		/* 2.3.3 Font weight */

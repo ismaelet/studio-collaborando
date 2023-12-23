@@ -1,6 +1,5 @@
 <div class="grid content-start gap-4">
-    <h3
-        class="main-footer__column-title pl-2 border-l-4 border-secondary text-neutral-700 font-heading uppercase font-medium tracking-wide text-lg">
+    <h3 class="font-heading text-lg font-semibold tracking-widest uppercase border-l-[4px] border-secondary pl-2">
         {{ $title }}</h3>
 
     @foreach ($data as $link)

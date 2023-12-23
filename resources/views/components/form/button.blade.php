@@ -1,11 +1,11 @@
 @props([
-    'type' => 'primary',
+    'scheme' => 'primary',
     'href' => null,
-    'submit' => 'button',
+    'type' => 'button',
 ])
 
 @php
-    $classes = 'button py-4 px-16 rounded-full font-heading text-sm sm:text-base';
+    $classes = 'button px-16 rounded-full font-heading text-sm sm:text-base transition-colors';
 @endphp
 
 @pushOnce('styles')
@@ -13,15 +13,21 @@
         .button {
             min-width: 12rem;
 
-            &[data-type="primary"] {
-                background-color: hsl(var(--color-primary-400-hsl));
-                box-shadow: 0px 2rem 4rem -1rem hsl(var(--color-primary-400-hsl));
+            &[data-scheme="primary"] {
+                padding-block: 1rem;
+                background-color: var(--color-primary-400);
+                box-shadow: 0px 2rem 4rem -1rem var(--color-primary-400);
                 color: #fff;
+
+                &:hover {
+                    background-color: var(--color-primary-500);
+                }
             }
 
-            &[data-type="secondary"] {
+            &[data-scheme="secondary"] {
+                padding-block: calc(1rem - var(--border-width));
                 border: var(--border-width) solid currentColor;
-                color: hsl(var(--color-primary-400-hsl));
+                color: var(--color-primary-400);
             }
         }
     </style>
@@ -29,10 +35,8 @@
 
 @if ($href)
     <a href="{{ $href }}" {{ $attributes->class($classes) }}"
-        data-type="{{ $type }}">{{ $slot }}</a>
-@elseif ($submit)
-    <button type="submit" {{ $attributes->class($classes) }}"
-        data-type="{{ $type }}">{{ $slot }}</button>
+        data-scheme="{{ $scheme }}">{{ $slot }}</a>
 @else
-    <div {{ $attributes->class($classes) }}" data-type="{{ $type }}"></div>
+    <button type="{{ $type }}" {{ $attributes->class($classes) }}"
+        data-scheme="{{ $scheme }}">{{ $slot }}</button>
 @endif

@@ -10,7 +10,7 @@
     <title>{{ isset($title) ? $title . ' | ' . $appName : $appName }}</title>
 
     <livewire:styles />
-    @vite(['resources/css/main.css', 'resources/js/app.js'])
+    @vite(['resources/css/main.css', 'resources/js/main.js'])
     @stack('styles')
 
 </head>

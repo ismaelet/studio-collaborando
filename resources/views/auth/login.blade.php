@@ -1,12 +1,11 @@
 @push('styles')
     <style>
         .welcome__image {
-            background-position: 70% 100%;
-            background-size: auto 150%;
+            background-position: 100% 100%;
+            background-size: cover;
 
-            @media (min-width: 769px) {
-                background-position: 100% 100%;
-                background-size: cover;
+            @media (max-width: 768px) {
+                min-height: 25rem;
             }
         }
     </style>
@@ -16,35 +15,34 @@
     {{-- Body --}}
     <x-slot:body>
         <div class="form-field">
-            <input class="open-input" type="email" name="email" value="{{ old('email') }}" placeholder="" required>
+            <x-form.open-input type="email" name="email" value="{{ old('email') }}" placeholder="" required />
 
             @error('email')
-                <p class="error-warning">{{ error }}</p>
+                <x-form.error-warning>{{ error }}</x-form.error-warning>
             @enderror
         </div>
 
         <div class="form-field">
-            <input class="open-input" type="password" name="password" value="" placeholder="" required>
+            <x-form.open-input type="password" name="password" value="" placeholder="" required />
 
             @error('password')
-                <p class="error-warning">{{ error }}</p>
+                <x-form.error-warning>{{ error }}</x-form.error-warning>
             @enderror
         </div>
 
         @if (session('status'))
-            <p class="error-warning">{{ session('status') }}</p>
+            <x-form.error-warning class="text-left">{{ session('status') }}</x-form.error-warning>
         @endif
     </x-slot:body>
 
     {{-- Footer --}}
     <x-slot:footer>
-        <button type="submit" class="button">Login</button>
-        <a href="{{ route('register') }}" class="button button--secondary">Registrati</a>
+        <x-form.button type="submit">Login</x-form.button>
+        <x-form.button href="{{ route('register') }}" scheme="secondary">Registrati</x-form.button>
     </x-slot:footer>
 
     {{-- Welcome Section --}}
     <x-slot:welcome>
-        <div class="welcome__image fill-all background-fill">
-        </div>
+        <div class="welcome__image" style="{{ set_background_image('auth/login-image.webp') }}"></div>
     </x-slot:welcome>
 </x-templates.auth>

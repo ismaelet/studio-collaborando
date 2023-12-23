@@ -545,7 +545,8 @@
         </svg>
 
         <div class="grid gap-4 justify-items-center">
-            <x-typography.title class="text-primary-400">Pagina in<br>manutenzione</x-typography.title>
+            <x-typography.section-heading class="text-primary-400">Pagina
+                in<br>manutenzione</x-typography.section-heading>
 
             <x-typography.subtitle class="text-primary-400">Questa pagina verrà riattivata a
                 breve</x-typography.subtitle>
