@@ -12,6 +12,7 @@
     <livewire:styles />
     @vite(['resources/css/main.css', 'resources/js/main.js'])
     @stack('styles')
+    @stack('scripts')
 
 </head>
 

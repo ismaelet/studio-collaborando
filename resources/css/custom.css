@@ -23,8 +23,8 @@
 /*
 * 1. Imports
 */
-@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Libre+Caslon+Display&display=swap');
 
 /*
@@ -70,6 +70,7 @@
 		--color-background-500-hsl: 228deg 45% 98%;
 
 		/* 2.1.7 Surfaces */
+		--color-surface-400-hsl: 0deg 0% 96%;
 		--color-surface-700-hsl: 0deg 0% 70%;
 
 		/* 2.1.8 Utility colors */
@@ -82,6 +83,7 @@
 		--border-width: 1px;
 		--border-color: var(--color-neutral-200);
 		--border: var(--border-width) solid var(--border-color);
+		--border-radius-100: 4px;
 		--border-radius-400: 1rem;
 		--border-radius-700: 2rem;
 
@@ -93,12 +95,16 @@
 		--font-family-heading: 'Poppins', system-ui, sans-serif;
 		--font-family-serif: 'Libre Caslon Display', serif;
 
+		/* 2.3 Shadows */
+		--shadow: 0 2rem 3rem -1rem hsl(0deg, 0%, 0%, 0.1);
+		--shadow-big: 0 0rem 3rem -1rem hsl(0deg, 0%, 0%, 0.2);
+
 		/* 2.3.2 Font size */
 		--font-size-100: 0.625rem;
 		--font-size-200: 0.75rem;
 		--font-size-300: 0.875rem;
 		--font-size-400: 1rem;
-		--font-size-700: min(2rem, 6vw);
+		--font-size-700: min(1.5rem, 6vw);
 		--font-size-800: min(3rem, 12.5vw);
 		--font-size-900: min(4rem, 15vw);
 

@@ -6,10 +6,11 @@ use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Validation\Rule;
 
 class RegisterController extends Controller {
 	public function index() {
-		return view('pages.auth.register')
+		return view('auth.register')
 			->with('locationTag', 'login')
 			->with('title', 'Registrati');
 	}
@@ -19,7 +20,12 @@ class RegisterController extends Controller {
 		$this->validate($request, [
 			'first_name' => 'required|max:255',
 			'last_name' => 'required|max:255',
-			'email' => 'required|email|max:255',
+			'email' => [
+				'required',
+				'email',
+				'max:255',
+				Rule::unique('users', 'email'),
+			],
 			'password' => 'required|confirmed',
 		]);
 

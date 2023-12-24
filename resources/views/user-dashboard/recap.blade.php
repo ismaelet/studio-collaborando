@@ -1,77 +1,47 @@
 @php
     $user = Auth::user();
+
+    $directory = public_path('uploads/free');
+    $freeMaterials = glob($directory . '/*.pdf');
 @endphp
-
-@push('styles')
-    <style>
-        .page-block {
-            display: grid;
-            gap: 3rem;
-        }
-
-        .page-block section {
-            display: grid;
-            gap: 1rem;
-        }
-
-        .show-more {
-            width: max-content;
-            padding-inline: 0.5em;
-            margin-inline: auto;
-            border-bottom: 1px solid;
-        }
-
-        .address {
-            padding: 1.5rem;
-            border: 1px solid var(--border-color-fade);
-            border-radius: var(--border-radius);
-        }
-
-        .favorites {
-            padding: 3rem;
-            margin-block: -1rem -2rem;
-            margin-inline: -3rem;
-            overflow-x: auto;
-            scroll-snap-type: inline mandatory;
-        }
-
-        .favorites-wrap {
-            min-width: 768px;
-        }
-
-        .favorites .item-card {
-            scroll-snap-align: start;
-        }
-
-        @media (max-width: 1024px) {
-            .favorites {
-                padding: unset;
-                margin: unset;
-                margin-top: 2rem;
-            }
-        }
-    </style>
-@endpush
 
 <x-templates.user-dashboard>
 
-    <div class="page-block">
-        <!-- Personal data -->
-        <section>
-            <h3 class="article-title">
-                {{ import_svg('icons/user') }}
-                Account
-            </h3>
+    <x-templates.user-dashboard.panel :icon="'user'" :title="'Account'">
+        <div class="grid gap-6">
+            <div>
+                <h4 class="text-xl font-heading mb-2">I miei dati</h4>
 
-            <div class="grid gap05">
-                <h3 class="section-subtitle">I mei dati</h3>
-                <?php if ($user->fullName()) { ?>
-                <p><?= $user->fullName() ?></p>
-                <?php } ?>
-                <p><?= $user->email ?></p>
-                <a href="{{ route('user-dashboard.personal-data') }}" class="sbtn sbtn_small">Modifica</a>
+                @if ($user->fullName())
+                    <p>Nominativo: <span class="font-semibold">{{ $user->fullName() }}</span></p>
+                @endif
+
+                <p>Indirizzo e-mail: <span class="font-semibold">{{ $user->email }}</span></p>
             </div>
-        </section>
-    </div>
+
+            <div>
+                <x-form.button href="{{ route('user-dashboard.personal-data') }}" variant="secondary"
+                    size="small">Modifica</x-form.button>
+            </div>
+        </div>
+    </x-templates.user-dashboard.panel>
+
+    <x-templates.user-dashboard.panel :icon="'documents'" :title="'Materiali gratuiti'">
+        <div class="grid gap-2">
+            @foreach ($freeMaterials as $material)
+                <p>
+                    <a href="{{ explode('/public/', $material)[1] }}" download
+                        class="flex gap-2 items-center italic font-medium w-fit">
+
+                        <span class="w-3 text-primary">
+                            {{ import_svg('icons/download') }}
+                        </span>
+
+                        {{ pathinfo($material, PATHINFO_FILENAME) }}
+                    </a>
+                </p>
+            @endforeach
+        </div>
+    </x-templates.user-dashboard.panel>
 
 </x-templates.user-dashboard>

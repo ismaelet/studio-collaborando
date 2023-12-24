@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\Auth\LogoutController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\UserDashboard\UserDashboard;
 use Illuminate\Support\Facades\Route;
@@ -20,8 +21,12 @@ use Illuminate\Support\Facades\Route;
  * App routes
  */
 Route::get('/', function () {
-	abort(503);
+	return view('home');
 })->name('home');
+
+Route::get('/home', function () {
+	return view('home');
+});
 
 Route::get('/services', function () {
 	abort(503);
@@ -43,37 +48,25 @@ Route::get('/contacts', function () {
 /**
  * Auth routes
  */
-Route::get('/login', [LoginController::class, 'index'])->name('login');
-Route::post('/login', [LoginController::class, 'auth']);
+Route::get('/login', [LoginController::class, 'index'])->name('login')->middleware('guest');
+Route::post('/login', [LoginController::class, 'auth'])->middleware('guest');
 
-Route::get('/register', function () {
-	abort(503);
-})->name('register');
+Route::get('/register', [RegisterController::class, 'index'])->name('register')->middleware('guest');
+Route::post('/register', [RegisterController::class, 'store'])->middleware('guest');
 
-Route::get('/register', function () {
-	abort(503);
-})->name('register');
-
-Route::get('/logout', function () {
-	abort(503);
-})->name('logout');
+Route::get('/logout', [LogoutController::class, 'index'])->name('logout')->middleware('auth');
+Route::post('/logout', [LogoutController::class, 'store'])->middleware('auth');
 
 /**
  * User dashboard routes
  */
-Route::get('/user-dashboard', [UserDashboard::class, 'index'])->name('user-dashboard');
-
-Route::get('/user-dashboard/recap', function () {
-	abort(503);
-})->name('user-dashboard.recap');
-
-Route::get('/user-dashboard/courses', function () {
-	abort(503);
-})->name('user-dashboard.courses');
+Route::get('/user-dashboard', [UserDashboard::class, 'index'])->name('user-dashboard')->middleware('auth');
+Route::get('/user-dashboard/recap', [UserDashboard::class, 'index'])->name('user-dashboard.recap')->middleware('auth');
+Route::get('/user-dashboard/courses', [UserDashboard::class, 'indexCourses'])->name('user-dashboard.courses')->middleware('auth');
 
 Route::get('/user-dashboard/personal-data', function () {
 	abort(503);
-})->name('user-dashboard.personal-data');
+})->name('user-dashboard.personal-data')->middleware('auth');
 
 // Misc
 Route::get('/privacy', function () {

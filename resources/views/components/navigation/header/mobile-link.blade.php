@@ -1,3 +1,9 @@
+@php
+    $show = isset($link['auth']) ? $link['auth'] == Auth::check() : true;
+    $username = Auth::user() ? Auth::user()->first_name : null;
+    $linkLabel = populate_variables($link['label'], ['username' => $username]);
+@endphp
+
 @pushOnce('styles')
     <style>
         .mobile-navigation__link {
@@ -7,6 +13,8 @@
     </style>
 @endPushOnce
 
-<li class="mobile-navigation__link font-heading text-lg">
-    <a href="{{ route($link['url']) }}">{{ is_string($link['label']) ? $link['label'] : $link['label'][0] }}</a>
-</li>
+@if ($show)
+    <li class="mobile-navigation__link font-heading text-lg text-neutral-700">
+        <a href="{{ route($link['url']) }}">{{ $linkLabel }}</a>
+    </li>
+@endif

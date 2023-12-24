@@ -19,6 +19,15 @@
             }
         }
 
+        .welcome__image {
+            background-position: 100% 100%;
+            background-size: cover;
+
+            @media (max-width: 768px) {
+                min-height: 25rem;
+            }
+        }
+
         .page__form {
             @media (min-width: 769px) {
                 grid-area: form;

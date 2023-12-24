@@ -23,8 +23,8 @@
             position: absolute;
         }
 
-        .main-header[data-floating='true']:not([data-navigation-status="open"]) {
-            background: linear-gradient(180deg, rgba(0, 0, 0, 0.20) 0%, rgba(0, 0, 0, 0.00) 40%);
+        .main-header[data-local-theme='dark']:not([data-navigation-status="open"]) {
+            background: linear-gradient(180deg, rgba(0, 0, 0, 0.30) 0%, rgba(0, 0, 0, 0.00) 100%);
         }
 
         .desktop-header {

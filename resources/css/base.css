@@ -62,6 +62,7 @@ input {
 		--color-neutral-900: hsl(var(--color-neutral-900-hsl));
 		--color-background-400: hsl(var(--color-background-400-hsl));
 		--color-background-500: hsl(var(--color-background-500-hsl));
+		--color-surface-400: hsl(var(--color-surface-400-hsl));
 		--color-surface-700: hsl(var(--color-surface-700-hsl));
 		--color-success-400: hsl(var(--color-success-400-hsl));
 		--color-error-400: hsl(var(--color-error-400-hsl));

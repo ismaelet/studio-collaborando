@@ -33,6 +33,7 @@
             }
 
             &[data-status="open"] {
+                color: var(--color-neutral-light-700);
                 position: relative;
                 z-index: 120;
 

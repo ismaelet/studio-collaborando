@@ -1,13 +1,10 @@
-{{-- @props([
+@props([
     'type' => 'text',
     'name' => null,
     'value' => null,
     'placeholder' => null,
-]) --}}
-
-@php
-    $classes = '';
-@endphp
+    'required' => false,
+])
 
 @pushOnce('styles')
     <style>
@@ -25,4 +22,5 @@
     </style>
 @endPushOnce
 
-<input class="open-input py-3 font-heading w-full" {{ $attributes }} />
+<input type="{{ $type }}" name="{{ $name }}" value="{{ $value }}" placeholder="{{ $placeholder }}"
+    {{ $required ? 'required' : '' }} class="open-input py-3 font-heading w-full" />

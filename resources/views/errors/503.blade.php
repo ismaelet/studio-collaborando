@@ -552,8 +552,9 @@
                 breve</x-typography.subtitle>
 
             @if (!$fullMaintenance)
-                <x-form.button href="{{ route('home') }}" :type="'secondary'">
-                    Torna alla home
+                <x-form.button href="{{ auth()->check() ? route('user-dashboard') : route('login') }}"
+                    variant="secondary">
+                    Indietro
                 </x-form.button>
             @endif
         </div>

@@ -10,8 +10,8 @@ return new class extends Migration {
 	 */
 	public function up(): void {
 		DB::statement('
-			INSERT INTO users (email, password, first_name, last_name)
-			SELECT email, ?, firstName, lastName
+			INSERT INTO users (id, email, password, first_name, last_name)
+			SELECT ecommerce_addresses.customerId, email, ?, firstName, lastName
 			FROM ecommerce_addresses
 			INNER JOIN ecommerce_carts ON ecommerce_carts.addressId = ecommerce_addresses.id
 			WHERE statusId > 0
