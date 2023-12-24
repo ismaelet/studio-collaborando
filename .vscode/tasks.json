@@ -18,6 +18,19 @@
 			"problemMatcher": []
 		},
 		{
+			"label": "Artisan: Create Model",
+			"type": "shell",
+			"command": "php",
+			"args": ["artisan", "make:model", "${input:modelName}"],
+			"group": {
+				"kind": "build",
+				"isDefault": false
+			},
+			"presentation": {
+				"reveal": "always"
+			}
+		},
+		{
 			"label": "Artisan: Create Controller",
 			"type": "shell",
 			"command": "php",
@@ -45,6 +58,12 @@
 		}
 	],
 	"inputs": [
+		{
+			"id": "modelName",
+			"type": "promptString",
+			"default": "Example",
+			"description": "Enter the model name"
+		},
 		{
 			"id": "controllerName",
 			"type": "promptString",

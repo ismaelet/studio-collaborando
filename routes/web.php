@@ -4,6 +4,10 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\LogoutController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\UserDashboard\UserDashboard;
+use App\Mail\Newsletter as Mailer;
+use App\Models\Newsletter\Newsletter;
+use App\Models\Newsletter\Subscriber;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -72,3 +76,18 @@ Route::get('/user-dashboard/personal-data', function () {
 Route::get('/privacy', function () {
 	abort(503);
 })->name('privacy');
+
+// Newsletter
+Route::get('/sendNewsletter', function () {
+	$newsletterData = Newsletter::where('sent', 0)->first();
+	$subscribers = Subscriber::all();
+
+	if ($newsletterData->count()) {
+		foreach ($subscribers as $subscriber) {
+			Mail::to($subscriber->email)->send(new Mailer($subscriber, $newsletterData->id));
+		}
+	}
+
+	$newsletterData->sent = 1;
+	$newsletterData->save();
+});
