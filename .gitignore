@@ -23,3 +23,4 @@ welcome.blade.php
 /.resources
 /public/uploads
 composer.lock
+package-lock.json
