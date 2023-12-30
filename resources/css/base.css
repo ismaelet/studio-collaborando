@@ -2,14 +2,18 @@
 * 1. Resets
 *	1.1 Global
 *	1.2 Assets
-*	1.3 Form elements
 * 2. Base
-*	2.1. Color parsing
+*	2.1 Color parsing
 *	2.2 Grids & flexboxes
 		2.2.1 Content grid
 		2.2.2 Content flow
 		2.2.3 Dynamic grid columns
 		2.2.4 Dynamic flexbox columns
+* 3. Utilities
+*	3.1 Borders
+*	3.2 Animations
+		3.2.1 Enter animations
+		3.2.2 Exit animations
 */
 
 /*
@@ -24,11 +28,6 @@ body {
 svg {
 	max-height: 100%;
 	fill: currentColor;
-}
-
-/* 1.3 Form elements */
-input {
-	font-family: var(--font-family-paragraph);
 }
 
 /*
@@ -154,5 +153,132 @@ input {
 			flex-grow: 1;
 			width: min(40rem, 100%);
 		}
+	}
+}
+
+/*
+* 3. Utilities
+*/
+@layer utilities {
+	/*
+	* 3.1 Borders
+	*/
+	.border {
+		border: var(--border);
+	}
+
+	/*
+	* 3.2 Animations
+	*/
+	/* 3.2.1 Enter animations */
+	[data-enter-animation] {
+		--_enter-animation-delay: var(--_animation-delay, 0ms);
+		--_enter-animation-speed: var(--_animation-speed, 400ms);
+		--_enter-animation-intensity: var(--_animation-intensity, 0.5rem);
+		opacity: 0;
+		pointer-events: none;
+
+		&[data-enter-animation-type='fade-in'] {
+			&:where([data-enter-animation-direction='left']) {
+				translate: calc(-1 * var(--_enter-animation-intensity)) 0;
+			}
+
+			&:where([data-enter-animation-direction='right']) {
+				translate: var(--_enter-animation-intensity) 0;
+			}
+
+			&:where([data-enter-animation-direction='top']) {
+				translate: 0 calc(-1 * var(--_enter-animation-intensity));
+			}
+
+			&:where([data-enter-animation-direction='bottom']) {
+				translate: 0 var(--_enter-animation-intensity);
+			}
+		}
+
+		&[data-entered='true'] {
+			opacity: 1;
+			pointer-events: auto;
+			translate: 0 0;
+			transition:
+				translate var(--_enter-animation-speed) ease-out,
+				opacity var(--_enter-animation-speed) ease-in;
+			transition-delay: var(--_enter-animation-delay);
+		}
+	}
+
+	/* 3.2.2 Exit animations */
+	.exit-animation {
+		--_exit-animation-delay: var(--_animation-delay, 0ms);
+		--_exit-animation-speed: var(--_animation-speed, 400ms);
+		--_exit-animation-intensity: var(--_animation-intensity, 0.5rem);
+
+		&[data-exit-animation-type='fade-out'] {
+			transition:
+				translate var(--_exit-animation-speed) ease-out,
+				opacity var(--_exit-animation-speed) ease-in;
+			transition-delay: var(--_exit-animation-delay);
+
+			&[data-exited='true'] {
+				opacity: 0 !important;
+				pointer-events: none;
+
+				&[data-exit-animation-direction='left'] {
+					translate: calc(-1 * var(--_exit-animation-intensity)) 0;
+				}
+
+				&[data-exit-animation-direction='right'] {
+					translate: var(--_exit-animation-intensity) 0;
+				}
+
+				&[data-exit-animation-direction='top'] {
+					translate: 0 calc(-1 * var(--_exit-animation-intensity));
+				}
+
+				&[data-exit-animation-direction='bottom'] {
+					translate: 0 var(--_exit-animation-intensity);
+				}
+			}
+		}
+	}
+
+	[data-delay='1'] {
+		--_animation-delay: 100ms;
+	}
+
+	[data-delay='2'] {
+		--_animation-delay: 200ms;
+	}
+
+	[data-delay='3'] {
+		--_animation-delay: 300ms;
+	}
+
+	[data-delay='4'] {
+		--_animation-delay: 400ms;
+	}
+
+	[data-delay='5'] {
+		--_animation-delay: 500ms;
+	}
+
+	[data-delay='6'] {
+		--_animation-delay: 600ms;
+	}
+
+	[data-delay='7'] {
+		--_animation-delay: 700ms;
+	}
+
+	[data-delay='8'] {
+		--_animation-delay: 800ms;
+	}
+
+	[data-delay='9'] {
+		--_animation-delay: 900ms;
+	}
+
+	[data-delay='10'] {
+		--_animation-delay: 1000ms;
 	}
 }

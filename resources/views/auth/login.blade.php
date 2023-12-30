@@ -1,7 +1,7 @@
 <x-templates.auth :$title>
     {{-- Body --}}
     <x-slot:body>
-        <div class="form-field">
+        <div class="form-field" data-on-enter-view data-enter-animation="direction: bottom, delay: 200">
             <x-form.open-input type="email" name="email" value="{{ old('email') }}" placeholder="Indirizzo e-mail"
                 required />
 
@@ -10,7 +10,7 @@
             @enderror
         </div>
 
-        <div class="form-field">
+        <div class="form-field" data-on-enter-view data-enter-animation="direction: bottom, delay: 400">
             <x-form.open-input type="password" name="password" value="" placeholder="Password" required />
 
             @error('password')
@@ -25,8 +25,13 @@
 
     {{-- Footer --}}
     <x-slot:footer>
-        <x-form.button type="submit">Login</x-form.button>
-        <x-form.button href="{{ route('register') }}" variant="secondary">Registrati</x-form.button>
+        <div data-on-enter-view data-enter-animation="direction: bottom, delay: 200">
+            <x-form.button class="w-full" type="submit">Login</x-form.button>
+        </div>
+
+        <div data-on-enter-view data-enter-animation="direction: bottom, delay: 400">
+            <x-form.button class="w-full" href="{{ route('register') }}" variant="secondary">Registrati</x-form.button>
+        </div>
     </x-slot:footer>
 
     {{-- Welcome Section --}}

@@ -44,7 +44,7 @@
 
         <form method="POST" class="page__form grid content-center justify-items-center md:px-8 py-16 text-center">
             <div class="w-full max-w-md grid gap-16">
-                <div>
+                <div data-on-enter-view data-enter-animation="direction: bottom">
                     <x-typography.main-heading>
                         {{ $title }}
                     </x-typography.main-heading>

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\Newsletter\Subscriber;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -16,7 +17,7 @@ class RegisterController extends Controller {
 	}
 
 	public function store(Request $request) {
-		// validation
+		// Validation
 		$this->validate($request, [
 			'first_name' => 'required|max:255',
 			'last_name' => 'required|max:255',
@@ -29,7 +30,7 @@ class RegisterController extends Controller {
 			'password' => 'required|confirmed',
 		]);
 
-		// store the user
+		// Store the user
 		User::create([
 			'first_name' => $request->first_name,
 			'last_name' => $request->last_name,
@@ -37,10 +38,16 @@ class RegisterController extends Controller {
 			'password' => Hash::make($request->password),
 		]);
 
-		// sign in the user
+		Subscriber::createAndSend([
+			'first_name' => $request->first_name,
+			'last_name' => $request->last_name,
+			'email' => $request->email,
+		]);
+
+		// Sign in the user
 		auth()->attempt($request->only('email', 'password'));
 
-		// redirect
+		// Redirect
 		return redirect()->route('user-dashboard');
 	}
 }

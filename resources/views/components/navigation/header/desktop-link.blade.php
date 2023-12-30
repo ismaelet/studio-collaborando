@@ -29,6 +29,10 @@
         .main-header:not(data-local-theme="dark") .desktop-navigation__link:has(a:hover) {
             color: var(--color-primary-400);
         }
+
+        .desktop-navigation__link[data-type="button"] a {
+            border-color: currentColor;
+        }
     </style>
 @endPushOnce
 

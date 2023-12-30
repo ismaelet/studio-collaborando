@@ -28,4 +28,4 @@
 @endPushOnce
 
 <input type="{{ $type }}" name="{{ $name }}" value="{{ $value }}" placeholder="{{ $placeholder }}"
-    {{ $required ? 'required' : '' }} {{ $attributes->class(['input']) }}" />
+    {{ $required ? 'required' : '' }} {{ $attributes->class(['input text-sm sm:text-base']) }}" />

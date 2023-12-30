@@ -40,10 +40,9 @@
             line-height: 1.8;
         }
 
-        .no-link,
-        .no-link a {
-            color: inherit !important;
-            text-decoration: none !important;
+        .contact-link {
+            width: 1.5rem;
+            aspect-ratio: 1;
         }
     </style>
 </head>
@@ -57,8 +56,8 @@
                         <tr>
                             <td style="padding-bottom: 16px">
                                 <center>
-                                    <img style="max-width: 40%; max-height: 80px;" src="{{ $logo }}"
-                                        alt="" />
+                                    <img style="max-width: 40%; max-height: 80px;"
+                                        src="{{ Vite::image('email-logo.png') }}" alt="" />
                                 </center>
                             </td>
                         </tr>
@@ -85,7 +84,18 @@
                         <tr>
                             <td>
                                 <table style="width: 100%; padding: 20px 0">
-                                    {{-- {{ $instagramLink }} {{ $facebookLink }} {{ $emailLink }} --}}
+                                    <tr>
+                                        <td style="text-align: center;">
+                                            @foreach (config('custom.social_media') as $contactSlug => $contact)
+                                                <a style="text-decoration: none; vertical-align: middle;"
+                                                    href="{{ $contact['url'] }}" target="_blank">
+                                                    <img style="max-width: 20px; max-height: 20px; margin: 0px 8px;"
+                                                        src="{{ Vite::image('contacts/' . $contactSlug . '.png') }}""
+                                                        alt="">
+                                                </a>
+                                            @endforeach
+                                        </td>
+                                    </tr>
                                 </table>
                             </td>
                         </tr>
