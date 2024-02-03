@@ -67,10 +67,8 @@ Route::post('/logout', [LogoutController::class, 'store'])->middleware('auth');
 Route::get('/user-dashboard', [UserDashboard::class, 'index'])->name('user-dashboard')->middleware('auth');
 Route::get('/user-dashboard/recap', [UserDashboard::class, 'index'])->name('user-dashboard.recap')->middleware('auth');
 Route::get('/user-dashboard/courses', [UserDashboard::class, 'indexCourses'])->name('user-dashboard.courses')->middleware('auth');
-
-Route::get('/user-dashboard/personal-data', function () {
-	abort(503);
-})->name('user-dashboard.personal-data')->middleware('auth');
+Route::get('/user-dashboard/personal-data', [UserDashboard::class, 'indexPersonalData'])->name('user-dashboard.personal-data')->middleware('auth');
+Route::post('/user-dashboard/personal-data', [UserDashboard::class, 'storePersonalData'])->middleware('auth');
 
 // Misc
 Route::get('/privacy', function () {

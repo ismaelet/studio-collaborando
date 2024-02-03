@@ -4,6 +4,7 @@
     'value' => null,
     'placeholder' => null,
     'required' => false,
+    'size' => null,
 ])
 
 @pushOnce('styles')
@@ -28,4 +29,5 @@
 @endPushOnce
 
 <input type="{{ $type }}" name="{{ $name }}" value="{{ $value }}" placeholder="{{ $placeholder }}"
-    {{ $required ? 'required' : '' }} {{ $attributes->class(['input text-sm sm:text-base']) }}" />
+    {{ $required ? 'required' : '' }} {{ $attributes->class(['input text-sm sm:text-base']) }}
+    {!! $size ? 'data-size="' . $size . '"' : '' !!} />

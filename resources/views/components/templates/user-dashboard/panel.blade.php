@@ -17,7 +17,7 @@
     </style>
 @endpushOnce
 
-<section class="user-dashboard-panel">
+<section {{ $attributes->class(['user-dashboard-panel']) }}>
 
     {{-- Panel header --}}
     <div class="user-dashboard-panel__title flex gap-4 items-center">
