@@ -11,18 +11,18 @@ services:
         command: php artisan serve --host=0.0.0.0 --port=80
         networks:
             - internal
-    vite:
-        image: node:latest
-        working_dir: /app
-        volumes:
-            - .:/app
-        ports:
-            - '5173:5173'
-        command: npm run dev
-        depends_on:
-            - laravel
-        networks:
-            - internal
+    # vite:
+    #     image: node:latest
+    #     working_dir: /app
+    #     volumes:
+    #         - .:/app
+    #     ports:
+    #         - '5173:5173'
+    #     command: sh -c "npm install && npm install -g vite && npm run dev"
+    #     depends_on:
+    #         - laravel
+    #     networks:
+    #         - internal
     mysql:
         image: 'mysql:latest'
         ports:
