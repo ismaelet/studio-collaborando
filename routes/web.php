@@ -33,20 +33,19 @@ Route::get('/home', function () {
 });
 
 Route::get('/services', function () {
-	abort(503);
+	return view('home');
 })->name('services');
 
 Route::get('/pet-therapy', function () {
-	abort(503);
-	abort(503);
+	return view('home');
 })->name('pet-therapy');
 
 Route::get('/courses', function () {
-	abort(503);
+	return view('home');
 })->name('courses');
 
 Route::get('/contacts', function () {
-	abort(503);
+	return view('home');
 })->name('contacts');
 
 /**
@@ -67,12 +66,18 @@ Route::post('/logout', [LogoutController::class, 'store'])->middleware('auth');
 Route::get('/user-dashboard', [UserDashboard::class, 'index'])->name('user-dashboard')->middleware('auth');
 Route::get('/user-dashboard/recap', [UserDashboard::class, 'index'])->name('user-dashboard.recap')->middleware('auth');
 Route::get('/user-dashboard/courses', [UserDashboard::class, 'indexCourses'])->name('user-dashboard.courses')->middleware('auth');
-Route::get('/user-dashboard/personal-data', [UserDashboard::class, 'indexPersonalData'])->name('user-dashboard.personal-data')->middleware('auth');
+
+Route::get('/user-dashboard/personal-data', function () {
+	return redirect('/user-dashboard');
+})->name('user-dashboard.personal-data')->middleware('auth');
+
+// Route::get('/user-dashboard/personal-data', [UserDashboard::class, 'indexPersonalData'])->name('user-dashboard.personal-data')->middleware('auth');
+
 Route::post('/user-dashboard/personal-data', [UserDashboard::class, 'storePersonalData'])->middleware('auth');
 
 // Misc
 Route::get('/privacy', function () {
-	abort(503);
+	return view('home');
 })->name('privacy');
 
 // Newsletter
