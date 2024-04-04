@@ -25,7 +25,7 @@
             {{ import_svg('icons/' . $icon) }}
         </span>
 
-        <x-typography.article-heading>{{ $title }}</x-typography.article-heading>
+        <x-typography.component-heading>{{ $title }}</x-typography.component-heading>
     </div>
 
     {{-- Panel body --}}

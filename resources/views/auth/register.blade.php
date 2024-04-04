@@ -20,13 +20,13 @@
             <x-form.input type="text" name="first_name" value="{{ old('first_name') }}" placeholder="Nome" required />
 
             @error('first_name')
-                <x-form.error-warning>{{ $message }}</x-form.error-warning>
+                <x-form.input-warning>{{ $message }}</x-form.input-warning>
             @enderror
 
             <x-form.input type="text" name="last_name" value="{{ old('last_name') }}" placeholder="Cognome" required />
 
             @error('last_name')
-                <x-form.error-warning>{{ $message }}</x-form.error-warning>
+                <x-form.input-warning>{{ $message }}</x-form.input-warning>
             @enderror
         </div>
 
@@ -36,7 +36,7 @@
                 required />
 
             @error('email')
-                <x-form.error-warning>{{ $message }}</x-form.error-warning>
+                <x-form.input-warning>{{ $message }}</x-form.input-warning>
             @enderror
         </div>
 
@@ -47,7 +47,7 @@
                 required />
 
             @error('password')
-                <x-form.error-warning>{{ $message }}</x-form.error-warning>
+                <x-form.input-warning>{{ $message }}</x-form.input-warning>
             @enderror
         </div>
     </x-slot:body>

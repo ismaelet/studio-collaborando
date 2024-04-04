@@ -34,7 +34,7 @@
 			"label": "Artisan: Create Controller",
 			"type": "shell",
 			"command": "php",
-			"args": ["artisan", "make:controller", "${input:controllerName}"],
+			"args": ["artisan", "make:controller", "${input:controllerName}Controller"],
 			"group": {
 				"kind": "build",
 				"isDefault": true

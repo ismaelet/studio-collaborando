@@ -14,7 +14,7 @@
             <form class="grid gap-6" method="POST">
                 @csrf
 
-                <x-typography.article-heading>I miei dati</x-typography.article-heading>
+                <x-typography.component-heading>I miei dati</x-typography.component-heading>
 
                 <x-form.form-group>
                     <x-form.label>Nome completo:</x-form.label>
@@ -36,7 +36,7 @@
             <form class="grid gap-6" method="POST">
                 @csrf
 
-                <x-typography.article-heading>Modifica la password</x-typography.article-heading>
+                <x-typography.component-heading>Modifica la password</x-typography.component-heading>
 
                 <x-form.form-group>
                     <x-form.label>Nome completo:</x-form.label>

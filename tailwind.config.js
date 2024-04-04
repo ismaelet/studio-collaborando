@@ -84,7 +84,7 @@ export default {
 						lineHeight: '1.2',
 					},
 				],
-				'article-heading': [
+				'component-heading': [
 					'var(--font-size-700)',
 					{
 						fontWeight: 'var(--font-weight-semibold)',

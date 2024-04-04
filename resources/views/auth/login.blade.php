@@ -6,7 +6,7 @@
                 required />
 
             @error('email')
-                <x-form.error-warning>{{ $message }}</x-form.error-warning>
+                <x-form.input-warning>{{ $message }}</x-form.input-warning>
             @enderror
         </div>
 
@@ -14,13 +14,20 @@
             <x-form.open-input type="password" name="password" value="" placeholder="Password" required />
 
             @error('password')
-                <x-form.error-warning>{{ $message }}</x-form.error-warning>
+                <x-form.input-warning>{{ $message }}</x-form.input-warning>
             @enderror
         </div>
 
         @if (session('status'))
-            <x-form.error-warning class="text-left">{{ session('status') }}</x-form.error-warning>
+            <x-form.input-warning class="text-left">{{ session('status') }}</x-form.input-warning>
         @endif
+
+        <p class="text-right" data-on-enter-view data-enter-animation="direction: bottom, delay: 450">
+            <a class="" href="{{ route('auth.recover') }}">
+                Hai dimenticato i dati di
+                accesso?
+            </a>
+        </p>
     </x-slot:body>
 
     {{-- Footer --}}

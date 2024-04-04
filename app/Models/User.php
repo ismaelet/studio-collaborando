@@ -13,7 +13,7 @@ class User extends Authenticatable {
 	use HasApiTokens, HasFactory, Notifiable;
 
 	/**
-	 * The attributes that are mass assignable.
+	 * The attributes that are mass assignable
 	 */
 	protected $fillable = [
 		'first_name',
@@ -23,7 +23,7 @@ class User extends Authenticatable {
 	];
 
 	/**
-	 * The attributes that should be hidden for serialization.
+	 * The attributes that should be hidden for serialization
 	 */
 	protected $hidden = [
 		'password',
@@ -31,7 +31,7 @@ class User extends Authenticatable {
 	];
 
 	/**
-	 * The attributes that should be cast.
+	 * The attributes that should be cast
 	 */
 	protected $casts = [
 		'email_verified_at' => 'datetime',
@@ -39,7 +39,7 @@ class User extends Authenticatable {
 	];
 
 	/**
-	 * Get the user's full name.
+	 * Get the user's full name
 	 */
 	public function fullName(): string {
 		$fullName = [];
