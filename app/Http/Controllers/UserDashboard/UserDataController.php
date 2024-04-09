@@ -5,39 +5,15 @@ namespace App\Http\Controllers\UserDashboard;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\View;
 use Illuminate\Validation\Rule;
 
-class UserDashboard extends Controller {
-
-	/**
-	 * Render the user dashboard
-	 */
-	public function index() {
-		View::share('dashboardLocationTag', 'recap');
-
-		return view('user-dashboard.recap')
-			->with('locationTag', 'user-dashboard')
-
-			->with('title', Auth::user()->name . ' - Profilo');
-	}
-
-	/**
-	 * Render the courses page
-	 */
-	public function indexCourses() {
-		View::share('dashboardLocationTag', 'courses');
-
-		return view('user-dashboard.courses')
-			->with('locationTag', 'user-dashboard')
-			->with('title', 'Profilo - Videocorsi');
-	}
+class UserDataController extends Controller {
 
 	/**
 	 * Render the personal data page
 	 */
-	public function indexPersonalData() {
+	public function index() {
 		View::share('dashboardLocationTag', 'personal-data');
 
 		return view('user-dashboard.personal-data')
@@ -48,7 +24,7 @@ class UserDashboard extends Controller {
 	/**
 	 * Store the user data
 	 */
-	public function storePersonalData(Request $request) {
+	public function update(Request $request) {
 		$user = User::find(auth()->user()->id);
 
 		// Validation

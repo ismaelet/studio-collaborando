@@ -1,3 +1,5 @@
+@props(['title' => null, 'headerConfig' => []])
+
 @push('styles')
     <style>
         .main-content {
@@ -16,9 +18,9 @@
     </style>
 @endpush
 
-<x-layout>
+<x-layout :$title>
     <div class="main-content">
-        <x-navigation.default-header :config="$headerConfig ?? []" />
+        <x-navigation.default-header :config="$headerConfig" />
 
         <main>
             <div class="content-grid min-h-full">

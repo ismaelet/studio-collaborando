@@ -12,6 +12,7 @@
 @pushOnce('styles')
     <style>
         .button {
+            --icon-size: 1em;
             display: inline-block;
             min-width: 12rem;
 
@@ -49,6 +50,12 @@
                     background-color: var(--color-primary-400);
                     color: #fff;
                 }
+            }
+
+            /* Button with icons */
+            &:has(svg) {
+                align-items: center;
+                gap: 0.5em;
             }
         }
     </style>

@@ -1,13 +1,15 @@
 @php
     $user = Auth::user();
 
-    $directory = public_path('uploads/free');
-    $freeMaterials = glob($directory . '/*.pdf');
+    $directory = public_storage('free');
+    $freeMaterials = array_map(function ($file) {
+        return explode(public_storage(), $file)[1];
+    }, glob($directory . '/*.pdf'));
 @endphp
 
 <x-templates.user-dashboard>
 
-    <x-templates.user-dashboard.panel :icon="'user'" :title="'Account'">
+    <x-user-dashboard.panel :icon="'user'" :title="'Account'">
         <div class="grid gap-6">
             <div>
                 <h4 class="text-xl font-heading mb-2">I miei dati</h4>
@@ -24,13 +26,13 @@
                     size="small">Modifica</x-form.button>
             </div>
         </div>
-    </x-templates.user-dashboard.panel>
+    </x-user-dashboard.panel>
 
-    <x-templates.user-dashboard.panel :icon="'documents'" :title="'Materiali gratuiti'">
+    <x-user-dashboard.panel :icon="'documents'" :title="'Materiali gratuiti'">
         <div class="grid gap-2">
             @foreach ($freeMaterials as $material)
                 <p>
-                    <a href="{{ explode('/public/', $material)[1] }}" download
+                    <a href="{{ public_asset($material) }}" download
                         class="flex gap-2 items-center italic font-medium w-fit">
 
                         <span class="w-3 text-primary">
@@ -42,6 +44,6 @@
                 </p>
             @endforeach
         </div>
-    </x-templates.user-dashboard.panel>
+    </x-user-dashboard.panel>
 
 </x-templates.user-dashboard>

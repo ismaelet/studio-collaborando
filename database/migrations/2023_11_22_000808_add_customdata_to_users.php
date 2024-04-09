@@ -11,8 +11,9 @@ return new class extends Migration {
 	public function up(): void {
 		Schema::table('users', function (Blueprint $table) {
 			$table->dropColumn('name');
-			$table->string('first_name')->after('password')->nullable();;
-			$table->string('last_name')->after('first_name')->nullable();;
+			$table->string('first_name')->after('password')->nullable();
+			$table->string('last_name')->after('first_name')->nullable();
+			$table->integer('admin_level')->default(0)->after('last_name');
 		});
 	}
 

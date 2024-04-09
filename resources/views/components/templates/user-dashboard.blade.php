@@ -1,3 +1,5 @@
+@props(['title' => 'Profilo'])
+
 @push('styles')
     <style>
         .dashboard-body {
@@ -9,11 +11,11 @@
     </style>
 @endpush
 
-<x-templates.main>
+<x-templates.main :$title>
     <div class="dashboard-body grid content-center gap-12 my-8 md:my-20">
 
         <div>
-            <x-templates.user-dashboard.navigation />
+            <x-user-dashboard.navigation />
         </div>
 
         <div class="grid gap-8 content-start">

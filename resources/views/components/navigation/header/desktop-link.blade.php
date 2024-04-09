@@ -1,9 +1,17 @@
 @php
     $currentLocation = $locationTag ?? Request::route()->getName();
     $isActive = $link['location_tag'] == $currentLocation;
-    $show = isset($link['auth']) ? $link['auth'] == Auth::check() : true;
     $username = Auth::user() ? Auth::user()->first_name : null;
     $linkLabel = populate_variables($link['label'], ['username' => $username]);
+    $show = true;
+
+    if (isset($link['auth'])) {
+        $show = $link['auth'] == Auth::check();
+    }
+
+    if (!empty($link['admin_only'])) {
+        $show = Auth::check() && Auth::user()->isAdmin();
+    }
 @endphp
 
 @pushOnce('styles')

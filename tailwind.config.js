@@ -45,9 +45,24 @@ export default {
 			// Utility colors
 			success: 'hsl(var(--color-success-400-hsl) / <alpha-value>)',
 			error: 'hsl(var(--color-error-400-hsl) / <alpha-value>)',
+
+			// Basic colors
+			white: 'white',
+			blue: 'darkcyan',
+			green: 'lightgreen',
 		},
 		borderWidth: {
 			DEFAULT: 'var(--border-width)',
+		},
+		// Custom border radius
+		borderRadius: {
+			none: '0',
+			xs: 'var(--border-radius-100)',
+			sm: 'var(--border-radius-200)',
+			DEFAULT: 'var(--border-radius-400)',
+			lg: 'var(--border-radius-700)',
+			xl: 'var(--border-radius-900)',
+			full: '100vw',
 		},
 		fontFamily: {
 			sans: 'var(--font-family-paragraph)',
@@ -57,6 +72,9 @@ export default {
 		extend: {
 			height: {
 				'screen-min': '100svh',
+			},
+			borderColor: {
+				DEFAULT: 'var(--border-color)',
 			},
 			fontSize: {
 				// Headings

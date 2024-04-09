@@ -5,7 +5,9 @@ use App\Http\Controllers\Auth\LogoutController;
 use App\Http\Controllers\Auth\RecoverController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Auth\ResetController;
-use App\Http\Controllers\UserDashboard\UserDashboard;
+use App\Http\Controllers\UserDashboard\UserCoursesController;
+use App\Http\Controllers\UserDashboard\UserDataController;
+use App\Http\Controllers\UserDashboard\UserRecapController;
 use App\Mail\Newsletter as Mailer;
 use App\Models\Newsletter\Newsletter;
 use App\Models\Newsletter\Subscriber;
@@ -53,35 +55,36 @@ Route::get('/contacts', function () {
 /**
  * Auth routes
  */
-Route::get('/login', [LoginController::class, 'index'])->name('login')->middleware('guest');
-Route::post('/login', [LoginController::class, 'auth'])->middleware('guest');
+Route::middleware('guest')->group(function () {
+	Route::get('/login', [LoginController::class, 'index'])->name('login');
+	Route::post('/login', [LoginController::class, 'auth']);
 
-Route::get('/register', [RegisterController::class, 'index'])->name('register')->middleware('guest');
-Route::post('/register', [RegisterController::class, 'store'])->middleware('guest');
+	Route::get('/register', [RegisterController::class, 'index'])->name('register');
+	Route::post('/register', [RegisterController::class, 'store']);
 
-Route::get('/logout', [LogoutController::class, 'index'])->name('logout')->middleware('auth');
-Route::post('/logout', [LogoutController::class, 'store'])->middleware('auth');
+	Route::get('/recover', [RecoverController::class, 'index'])->name('auth.recover');
+	Route::post('/recover', [RecoverController::class, 'store']);
+});
 
-Route::get('/recover', [RecoverController::class, 'index'])->name('auth.recover')->middleware('guest');
-Route::post('/recover', [RecoverController::class, 'store'])->middleware('guest');
+Route::middleware('auth')->group(function () {
+	Route::get('/logout', [LogoutController::class, 'index'])->name('logout');
+	Route::post('/logout', [LogoutController::class, 'store']);
+});
 
-Route::get('/reset', [ResetController::class, 'index'])->name('auth.reset')->middleware('guest');
-Route::post('/reset', [ResetController::class, 'update'])->middleware('guest');
+Route::middleware('guest')->name('auth.reset')->group(function () {
+	Route::get('/reset', [ResetController::class, 'index']);
+	Route::post('/reset', [ResetController::class, 'update']);
+});
 
 /**
  * User dashboard routes
  */
-Route::get('/user-dashboard', [UserDashboard::class, 'index'])->name('user-dashboard')->middleware('auth');
-Route::get('/user-dashboard/recap', [UserDashboard::class, 'index'])->name('user-dashboard.recap')->middleware('auth');
-Route::get('/user-dashboard/courses', [UserDashboard::class, 'indexCourses'])->name('user-dashboard.courses')->middleware('auth');
+if (file_exists(__DIR__ . '/user-dashboard.php')) include_once __DIR__ . '/user-dashboard.php';
 
-Route::get('/user-dashboard/personal-data', function () {
-	return redirect('/user-dashboard');
-})->name('user-dashboard.personal-data')->middleware('auth');
-
-// Route::get('/user-dashboard/personal-data', [UserDashboard::class, 'indexPersonalData'])->name('user-dashboard.personal-data')->middleware('auth');
-
-Route::post('/user-dashboard/personal-data', [UserDashboard::class, 'storePersonalData'])->middleware('auth');
+/**
+ * Admin routes
+ */
+if (file_exists(__DIR__ . '/admin.php')) include_once __DIR__ . '/admin.php';
 
 // Misc
 Route::get('/privacy', function () {

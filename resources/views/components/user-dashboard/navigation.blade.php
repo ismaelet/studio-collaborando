@@ -1,6 +1,16 @@
 @php
     //navigation menu
-    $profileLinks = [['title' => 'Account', 'url' => 'user-dashboard', 'location' => 'recap', 'icon' => 'user'], ['title' => 'I miei corsi', 'url' => 'user-dashboard.courses', 'location' => 'courses', 'icon' => 'courses'], ['title' => 'I miei dati', 'url' => 'user-dashboard.personal-data', 'location' => 'personal-data', 'icon' => 'settings'], ['title' => 'Logout', 'url' => 'logout', 'location' => 'logout', 'icon' => 'logout']];
+    $profileLinks = [
+        ['title' => 'Account', 'url' => 'user-dashboard', 'location' => 'recap', 'icon' => 'user'],
+        ['title' => 'I miei corsi', 'url' => 'user-dashboard.courses', 'location' => 'courses', 'icon' => 'courses'],
+        [
+            'title' => 'I miei dati',
+            'url' => 'user-dashboard.personal-data',
+            'location' => 'personal-data',
+            'icon' => 'settings',
+        ],
+        ['title' => 'Logout', 'url' => 'logout', 'location' => 'logout', 'icon' => 'logout'],
+    ];
 
 @endphp
 
@@ -44,7 +54,7 @@
     <ul class="">
 
         @foreach ($profileLinks as $profileLink)
-            <x-templates.user-dashboard.link :profileLink="$profileLink" :dashboardLocation="$dashboardLocationTag" />
+            <x-user-dashboard.link :profileLink="$profileLink" :dashboardLocation="$dashboardLocationTag" />
         @endforeach
 
     </ul>
