@@ -2,11 +2,10 @@
 
     <div class="grid gap-8">
         {{-- Title bar --}}
-        <x-dashboard.title-bar :$title :$addButton />
+        <x-dashboard.title-bar :$title />
 
         {{-- Table --}}
-        <x-table.layout :$fields :$orderBy :$orderDirection :$records :$buttons :$recordCount :$pageSize
-            :$interactiveRows />
+        <x-table.container :$columns :$records :$recordCount :$orderBy :$orderDirection :$buttons :$pageSize />
     </div>
 
 </x-templates.admin-dashboard>

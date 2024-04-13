@@ -3,13 +3,16 @@
 <x-templates.admin-dashboard>
 
     <div class="grid gap-12">
-        <x-dashboard.form-title :$title :$type />
+        {{-- Title --}}
+        <x-dashboard.form-title :$title />
 
         <form method="POST" class="grid gap-8">
+            {{-- Body --}}
             <div class="grid grid-cols-1">
                 {{ $slot }}
             </div>
 
+            {{-- Footer --}}
             <div class="flex gap-8">
                 @if ($type == 'add')
                     <x-form.button name="add">

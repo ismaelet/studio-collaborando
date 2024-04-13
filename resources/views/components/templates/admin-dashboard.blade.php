@@ -11,7 +11,7 @@
             'name' => 'Sito pubblico',
             'icon' => 'link',
             'checked' => false,
-            'url' => '/',
+            'url' => route('home'),
         ],
     ];
 
@@ -23,7 +23,7 @@
         'name' => 'Dashboard',
         'icon' => 'dashboard',
         'checked' => false,
-        'url' => '/admin',
+        'url' => route('admin.dashboard'),
     ];
 
     $mainGroup[] = $dashboardHome;
@@ -59,11 +59,8 @@
         foreach ($sections as $sectionRecord) {
             $section = [];
             $section['name'] = $sectionRecord->name;
-            $section['url'] = rtrim(
-                '/admin/' . $sectionRecord->category->slug . '/' . str_replace('list', '', $sectionRecord->slug),
-                '/',
-            );
-            $section['checked'] = $section['url'] == '/' . Request::path();
+            $section['url'] = $sectionRecord->url();
+            $section['checked'] = $sectionRecord->url() == Route::currentRouteName();
 
             $category['sections'][] = $section;
         }

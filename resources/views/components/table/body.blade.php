@@ -1,4 +1,4 @@
-@props(['fields', 'records', 'buttons', 'interactiveRows'])
+@props(['columns', 'records', 'buttons'])
 
 @pushOnce('styles')
     <style>
@@ -11,25 +11,18 @@
 @endpushOnce
 
 <tbody>
-
     @foreach ($records as $record)
         <tr class="table-row border-t transition-colors hover:bg-surface-400">
 
-            @foreach ($fields as $field)
+            @foreach ($columns as $column)
                 <td class="align-middle">
 
-                    @if (isset($field['name']))
-                        @if ($interactiveRows)
-                            <a href="/{{ Request::path() . '/' . $record->id }}">
-                        @endif
-
-                        <div class="p-4 font-medium">
-                            {{ $record->{$field['name']} ?: '-' }}
-                        </div>
-
-                        @if ($interactiveRows)
-                            </a>
-                        @endif
+                    @if (isset($column['name']))
+                        <a href="/{{ Request::path() . '/' . $record->id }}">
+                            <div class="p-4 font-medium">
+                                <x-table.cell :$record :$column />
+                            </div>
+                        </a>
                     @else
                         <x-table.buttons :$record :$buttons />
                     @endif

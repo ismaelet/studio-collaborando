@@ -35,7 +35,7 @@ return [
 		['type' => 'link', 'label' => 'Pet Therapy', 'url' => 'pet-therapy', 'location_tag' => 'pet-therapy', 'admin_only' => false],
 		['type' => 'link', 'label' => 'Videocorsi', 'url' => 'courses', 'location_tag' => 'courses', 'admin_only' => false],
 		['type' => 'link', 'label' => 'Contatti', 'url' => 'contacts', 'location_tag' => 'contacts', 'admin_only' => false],
-		['type' => 'link', 'label' => 'Gestione', 'url' => 'admin', 'location_tag' => 'admin', 'admin_only' => true],
+		['type' => 'link', 'label' => 'Gestione', 'url' => 'admin.dashboard', 'location_tag' => 'admin', 'admin_only' => true],
 		['type' => 'button', 'label' => 'Login', 'url' => 'login', 'location_tag' => 'login', 'auth' => false, 'admin_only' => false],
 		['type' => 'button', 'label' => '{{ $username }}', 'url' => 'user-dashboard', 'location_tag' => 'user-dashboard', 'auth' => true, 'admin_only' => false],
 	],
