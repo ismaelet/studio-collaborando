@@ -13,12 +13,12 @@ class AdminSection extends Model {
 	/**
 	 * The attributes that are mass assignable
 	 */
-	protected $fillable = ['admin_category_id', 'name', 'slug', 'order', 'hidden', 'for_supervisors'];
+	protected $fillable = ['category_id', 'name', 'slug', 'order', 'hidden', 'for_supervisors'];
 
 	/**
 	 * Get the category
 	 */
 	public function category(): BelongsTo {
-		return $this->belongsTo(AdminCategory::class, 'admin_category_id');
+		return $this->belongsTo(AdminCategory::class);
 	}
 }

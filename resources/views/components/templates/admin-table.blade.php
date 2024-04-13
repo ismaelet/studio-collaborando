@@ -2,7 +2,7 @@
 
     <div class="grid gap-8">
         {{-- Title bar --}}
-        <x-dashboard.title-bar :title="$section->name" :$addButton />
+        <x-dashboard.title-bar :$title :$addButton />
 
         {{-- Table --}}
         <x-table.layout :$fields :$orderBy :$orderDirection :$records :$buttons :$recordCount :$pageSize

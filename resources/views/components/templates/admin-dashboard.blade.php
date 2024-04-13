@@ -28,26 +28,6 @@
 
     $mainGroup[] = $dashboardHome;
 
-    // Fetch the current section
-    $currentSection = false;
-    $currentPathFull = explode('admin', Request::path())[1] ?? '';
-    $currentPathFull = ltrim($currentPathFull, '/');
-
-    if ($currentPathFull) {
-        $currentCategorySlug = explode('/', $currentPathFull)[0] ?? null;
-        $currentSectionSlug = explode('/', $currentPathFull)[1] ?? null;
-
-        $currentSection = AdminSection::join(
-            'admin_categories',
-            'admin_sections.admin_category_id',
-            '=',
-            'admin_categories.id',
-        )
-            ->where('admin_categories.slug', $currentCategorySlug)
-            ->where('admin_sections.slug', $currentSectionSlug)
-            ->first();
-    }
-
     // Fetch the categories
     $categories = is_supervisor()
         ? AdminCategory::orderBy('for_supervisors')->orderBy('order')->orderBy('name')->get()
@@ -62,15 +42,14 @@
         $category['name'] = $categoryRecord->name;
         $category['icon'] = $categoryRecord->slug;
         $category['slug'] = $categoryRecord->slug;
-        $category['checked'] = $currentSection && $category['slug'] == $currentSection->category->slug;
 
         $sections = is_supervisor()
-            ? AdminSection::where('admin_category_id', $categoryRecord->id)
+            ? AdminSection::where('category_id', $categoryRecord->id)
                 ->where('hidden', 0)
                 ->orderBy('order')
                 ->orderBy('name')
                 ->get()
-            : AdminSection::where('admin_category_id', $categoryRecord->id)
+            : AdminSection::where('category_id', $categoryRecord->id)
                 ->where('for_supervisors', 0)
                 ->where('hidden', 0)
                 ->orderBy('order')
@@ -80,11 +59,11 @@
         foreach ($sections as $sectionRecord) {
             $section = [];
             $section['name'] = $sectionRecord->name;
-            $section['checked'] =
-                $currentSection && $category['checked'] && $sectionRecord->slug == $currentSection->slug;
-            $section['url'] = $sectionRecord
-                ? '/admin/' . $sectionRecord->category->slug . '/' . $sectionRecord->slug
-                : null;
+            $section['url'] = rtrim(
+                '/admin/' . $sectionRecord->category->slug . '/' . str_replace('list', '', $sectionRecord->slug),
+                '/',
+            );
+            $section['checked'] = $section['url'] == '/' . Request::path();
 
             $category['sections'][] = $section;
         }
@@ -93,19 +72,19 @@
     }
 
     $navigationGroups[] = $mainGroup;
+
 @endphp
 
 @pushOnce('styles')
     <style>
-        [data-color-scheme="light"] {
-            --theme-h: 30deg;
-            --color-background-l: 96%;
-            --theme-dark-s: 25%;
+        .button {
+            border-radius: var(--border-radius-400);
         }
     </style>
 @endpushOnce
 
-<x-templates.dashboard color-scheme="light" :navigation-groups="$navigationGroups">
+<x-templates.dashboard theme="modern" color-scheme="{{ config('custom.meta_data.default_color_scheme') }}"
+    :navigation-groups="$navigationGroups">
 
     {{ $slot }}
 

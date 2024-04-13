@@ -19,6 +19,8 @@ export default {
 			// Neutral light
 			'neutral-light-100': 'hsl(var(--color-neutral-light-100-hsl) / <alpha-value>)',
 			'neutral-light-200': 'hsl(var(--color-neutral-light-200-hsl) / <alpha-value>)',
+			'neutral-light-300': 'hsl(var(--color-neutral-light-300-hsl) / <alpha-value>)',
+			'neutral-light-350': 'hsl(var(--color-neutral-light-350-hsl) / <alpha-value>)',
 			'neutral-light-400': 'hsl(var(--color-neutral-light-400-hsl) / <alpha-value>)',
 			'neutral-light-700': 'hsl(var(--color-neutral-light-700-hsl) / <alpha-value>)',
 			'neutral-light-900': 'hsl(var(--color-neutral-light-900-hsl) / <alpha-value>)',
@@ -29,6 +31,8 @@ export default {
 			// Neutral theme
 			'neutral-100': 'hsl(var(--color-neutral-100-hsl) / <alpha-value>)',
 			'neutral-200': 'hsl(var(--color-neutral-200-hsl) / <alpha-value>)',
+			'neutral-300': 'hsl(var(--color-neutral-300-hsl) / <alpha-value>)',
+			'neutral-350': 'hsl(var(--color-neutral-350-hsl) / <alpha-value>)',
 			'neutral-400': 'hsl(var(--color-neutral-400-hsl) / <alpha-value>)',
 			'neutral-700': 'hsl(var(--color-neutral-700-hsl) / <alpha-value>)',
 			'neutral-900': 'hsl(var(--color-neutral-900-hsl) / <alpha-value>)',
@@ -49,7 +53,7 @@ export default {
 			// Basic colors
 			white: 'white',
 			blue: 'darkcyan',
-			green: 'lightgreen',
+			green: 'green',
 		},
 		borderWidth: {
 			DEFAULT: 'var(--border-width)',
@@ -70,11 +74,23 @@ export default {
 			serif: 'var(--font-family-serif)',
 		},
 		extend: {
+			// New widths
+			width: {
+				'1em': '1em',
+			},
 			height: {
 				'screen-min': '100svh',
 			},
+			spacing: {
+				'content-padding': 'var(--content-padding)',
+			},
 			borderColor: {
 				DEFAULT: 'var(--border-color)',
+			},
+			// New box shadows
+			boxShadow: {
+				DEFAULT: 'var(--shadow-400)',
+				lg: 'var(--shadow-700)',
 			},
 			fontSize: {
 				// Headings

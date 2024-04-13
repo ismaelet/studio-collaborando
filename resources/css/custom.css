@@ -32,6 +32,11 @@
 */
 @layer base {
 	:root {
+		/* 2.1.1 Theme */
+		--theme-h: 30deg;
+		--theme-light-s: 25%;
+		--theme-dark-s: 13%;
+
 		/*
 		* 2.1. Colors
 		*/
@@ -49,6 +54,7 @@
 		--color-neutral-light-100-hsl: 0deg 0% 100%;
 		--color-neutral-light-200-hsl: 0deg 0% 93%;
 		--color-neutral-light-300-hsl: 0deg 0% 87%;
+		--color-neutral-light-350-hsl: 0deg 0% 40%;
 		--color-neutral-light-400-hsl: 0deg 0% 25%;
 		--color-neutral-light-700-hsl: 0deg 0% 13%;
 		--color-neutral-light-900-hsl: 0deg 0% 0%;
@@ -61,20 +67,22 @@
 		--color-neutral-100-hsl: var(--color-neutral-light-100-hsl);
 		--color-neutral-200-hsl: var(--color-neutral-light-200-hsl);
 		--color-neutral-300-hsl: var(--color-neutral-light-300-hsl);
+		--color-neutral-350-hsl: var(--color-neutral-light-350-hsl);
 		--color-neutral-400-hsl: var(--color-neutral-light-400-hsl);
 		--color-neutral-700-hsl: var(--color-neutral-light-700-hsl);
 		--color-neutral-900-hsl: var(--color-neutral-light-900-hsl);
 
 		/* 2.1.6 Background */
 		--color-background-s: var(--theme-dark-s);
-		--color-background-l: 10%;
-		--color-background-hsl: var(--theme-h), var(--theme-dark-s), var(--color-background-l);
+		--color-background-l: 97%;
+		--color-background-hsl: var(--theme-h), var(--theme-light-s), var(--color-background-l);
 		--color-background-400-hsl: var(--color-neutral-100-hsl);
 		--color-background-500-hsl: 228deg 45% 98%;
 
 		/* 2.1.7 Surfaces */
-		--color-surface-400-hsl: 0deg 0% 96%;
-		--color-surface-700-hsl: 0deg 0% 70%;
+		--color-surface-400-hsl: var(--theme-h) calc(var(--theme-light-s)) 98%;
+		--color-surface-500-hsl: var(--theme-h) 10% 94%;
+		--color-surface-700-hsl: var(--theme-h) 0% 70%;
 
 		/* 2.1.8 Utility colors */
 		--color-success-400-hsl: 145deg 63% 50%;
@@ -139,8 +147,16 @@
 	/*
 	* 2.5. Light mode
 	*/
-	/* [data-theme='light'] {
-	} */
+	[data-theme='light'] {
+		/* 2.7.1 Neutral colors */
+		--color-neutral-100-hsl: var(--color-neutral-light-100-hsl);
+		--color-neutral-200-hsl: var(--color-neutral-light-200-hsl);
+		--color-neutral-300-hsl: var(--color-neutral-light-300-hsl);
+		--color-neutral-350-hsl: var(--color-neutral-light-350-hsl);
+		--color-neutral-400-hsl: var(--color-neutral-light-400-hsl);
+		--color-neutral-700-hsl: var(--color-neutral-light-700-hsl);
+		--color-neutral-900-hsl: var(--color-neutral-light-900-hsl);
+	}
 
 	/*
 	* 2.6. Dark mode
@@ -155,5 +171,26 @@
 
 	[data-local-theme='dark'] {
 		color: var(--color-neutral-900);
+	}
+}
+
+/*
+* 4. Components
+*/
+@layer components {
+	.surface {
+		background-color: #fff;
+		border-radius: var(--border-radius-700);
+		box-shadow: var(--shadow-400);
+
+		[data-color-scheme='dark'] {
+			background-color: var(--color-surface-400);
+		}
+
+		[data-theme='modern'] & {
+			background-color: transparent;
+			border: var(--border);
+			box-shadow: none;
+		}
 	}
 }

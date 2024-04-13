@@ -6,6 +6,18 @@
     $orderDirection = $active && $orderDirection == 'desc' ? 'asc' : 'desc';
 @endphp
 
+@pushOnce('styles')
+    <style>
+        .table-head-item {
+            color: var(--color-neutral-300);
+
+            [data-color-scheme="light"] & {
+                color: var(--color-neutral-350);
+            }
+        }
+    </style>
+@endpushOnce
+
 @pushOnce('scripts')
     <script defer>
         function sort_table(field) {
@@ -19,7 +31,7 @@
 @endpushOnce
 
 <th x-data @click="sort_table($event.target)"
-    class="h-12 px-4 text-left align-middle cursor-pointer font-medium text-neutral-300 hover:text-primary transition-colors">
+    class="table-head-item h-12 px-4 text-left align-middle cursor-pointer font-medium hover:text-primary transition-colors">
     @if ($hasName)
         <input type="radio" name="order_by" value="{{ $field['name'] }}" class="hidden">
         <input type="radio" name="order_direction" value="{{ $orderDirection }}" class="hidden">

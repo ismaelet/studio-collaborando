@@ -20,10 +20,6 @@
 
             {
 
-            .divisor {
-                border-top: var(--border-width) solid var(--color-neutral-200);
-            }
-
             .item {
                 grid-template-rows: max-content 0fr;
                 overflow: hidden;
@@ -127,7 +123,6 @@
         @foreach ($navigationGroup as $item)
             <label>
                 <li class="item grid">
-                    <input type="checkbox" name="admin_category" class="hidden js-radio-checkbox">
 
                     @if (isset($item['url']))
                         <a class="item-header items-center cursor-pointer" href="{{ $item['url'] }}">
@@ -145,6 +140,9 @@
 
                             @foreach ($item['sections'] as $subitem)
                                 <li class="subitem">
+                                    <input type="checkbox" name="admin_section" class="hidden js-radio-checkbox"
+                                        {{ $subitem['checked'] ? 'checked' : '' }}>
+
                                     <p class="subitem-title {{ $subitem['checked'] ? 'active' : '' }}">
                                         <a href="{{ $subitem['url'] }}">{{ $subitem['name'] }}</a>
                                     </p>
@@ -158,5 +156,5 @@
         @endforeach
     </div>
 
-    <span class="divisor"></span>
+    <span class="border-b"></span>
 </ul>

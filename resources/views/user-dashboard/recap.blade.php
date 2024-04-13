@@ -10,7 +10,7 @@
 <x-templates.user-dashboard>
 
     <x-user-dashboard.panel :icon="'user'" :title="'Account'">
-        <div class="grid gap-6">
+        <div class="grid grid-cols-1 gap-6">
             <div>
                 <h4 class="text-xl font-heading mb-2">I miei dati</h4>
 
@@ -18,7 +18,7 @@
                     <p>Nominativo: <span class="font-semibold">{{ $user->fullName() }}</span></p>
                 @endif
 
-                <p>Indirizzo e-mail: <span class="font-semibold">{{ $user->email }}</span></p>
+                <p>Indirizzo e-mail: <span class="font-semibold break-words">{{ $user->email }}</span></p>
             </div>
 
             <div>

@@ -38,7 +38,7 @@
     </style>
 @endpush
 
-<nav class="user-dashboard__navigation grid bg-surface-400 rounded-2xl overflow-clip" x-data="{ open: false }"
+<nav class="user-dashboard__navigation grid bg-surface-400 shadow rounded overflow-clip" x-data="{ open: false }"
     :data-open="open ? 'true' : 'false'">
     <!-- Title -->
     <label class="md:hidden" @click="open = !open">

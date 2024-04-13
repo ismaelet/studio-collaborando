@@ -1,3 +1,5 @@
+@props(['theme' => null, 'colorScheme' => null])
+
 @push('styles')
     <style>
         main {
@@ -13,6 +15,8 @@
     </style>
 @endpush
 
-<x-layout>
+<x-layout :$theme :$colorScheme>
+
     <main>{{ $slot }}</main>
+
 </x-layout>

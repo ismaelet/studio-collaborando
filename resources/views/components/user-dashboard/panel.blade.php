@@ -1,26 +1,9 @@
 @props(['title' => '', 'icon' => null])
 
-@pushOnce('styles')
-    <style>
-        .user-dashboard-panel {
-            padding-inline: var(--content-padding);
-            padding-block: var(--content-padding);
-            border-radius: var(--border-radius-400);
-            box-shadow: var(--shadow-big);
-        }
-
-        .user-dashboard-panel__title {
-            padding-bottom: var(--content-padding);
-            margin-bottom: var(--content-padding);
-            border-bottom: var(--border);
-        }
-    </style>
-@endpushOnce
-
-<section {{ $attributes->class(['user-dashboard-panel']) }}>
+<section {{ $attributes->class(['user-dashboard-panel', 'surface', 'p-content-padding']) }}>
 
     {{-- Panel header --}}
-    <div class="user-dashboard-panel__title flex gap-4 items-center">
+    <div class="flex gap-4 items-center pb-content-padding mb-content-padding border-b">
         <span class="w-6 aspect-square text-secondary-400">
             {{ import_svg('icons/' . $icon) }}
         </span>
