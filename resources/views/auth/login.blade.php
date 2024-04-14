@@ -1,25 +1,25 @@
-<x-templates.auth :$title>
+<x-layouts.auth :$title>
     {{-- Body --}}
     <x-slot:body>
         <div class="form-field" data-on-enter-view data-enter-animation="direction: bottom, delay: 200">
-            <x-form.open-input type="email" name="email" value="{{ old('email') }}" placeholder="Indirizzo e-mail"
+            <x-inputs.open-input type="email" name="email" value="{{ old('email') }}" placeholder="Indirizzo e-mail"
                 required />
 
             @error('email')
-                <x-form.input-warning>{{ $message }}</x-form.input-warning>
+                <x-inputs.warning>{{ $message }}</x-inputs.warning>
             @enderror
         </div>
 
         <div class="form-field" data-on-enter-view data-enter-animation="direction: bottom, delay: 400">
-            <x-form.open-input type="password" name="password" value="" placeholder="Password" required />
+            <x-inputs.open-input type="password" name="password" value="" placeholder="Password" required />
 
             @error('password')
-                <x-form.input-warning>{{ $message }}</x-form.input-warning>
+                <x-inputs.warning>{{ $message }}</x-inputs.warning>
             @enderror
         </div>
 
         @if (session('status'))
-            <x-form.input-warning class="text-left">{{ session('status') }}</x-form.input-warning>
+            <x-inputs.warning class="text-left">{{ session('status') }}</x-inputs.warning>
         @endif
 
         <p class="text-right" data-on-enter-view data-enter-animation="direction: bottom, delay: 450">
@@ -33,11 +33,12 @@
     {{-- Footer --}}
     <x-slot:footer>
         <div data-on-enter-view data-enter-animation="direction: bottom, delay: 200">
-            <x-form.button class="w-full" type="submit">Login</x-form.button>
+            <x-inputs.button class="w-full" type="submit">Login</x-inputs.button>
         </div>
 
         <div data-on-enter-view data-enter-animation="direction: bottom, delay: 400">
-            <x-form.button class="w-full" href="{{ route('register') }}" variant="secondary">Registrati</x-form.button>
+            <x-inputs.button class="w-full" href="{{ route('register') }}"
+                variant="secondary">Registrati</x-inputs.button>
         </div>
     </x-slot:footer>
 
@@ -45,4 +46,4 @@
     <x-slot:welcome>
         <div class="welcome__image" style="{{ set_background_image('auth/login-image.webp') }}"></div>
     </x-slot:welcome>
-</x-templates.auth>
+</x-layouts.auth>

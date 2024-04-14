@@ -1,9 +1,9 @@
-@props(['columns', 'orderBy', 'orderDirection'])
+@props(['columns'])
 
 <thead class="">
     <tr class="">
         @foreach ($columns as $column)
-            <x-table.header-cell :$column :$orderBy :$orderDirection />
+            <x-table.header-cell :$column />
         @endforeach
     </tr>
 </thead>

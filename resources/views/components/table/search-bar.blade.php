@@ -44,7 +44,7 @@
         {!! embed_icon('search') !!}
     </div>
 
-    <x-form.input type="text" class="input js-search-input" name="search" placeholder="Cerca nella lista"
+    <x-inputs.input type="text" class="input js-search-input" name="search" placeholder="Cerca nella lista"
         value="{{ $searchText ?? '' }}" />
 
     @isset($searchText)

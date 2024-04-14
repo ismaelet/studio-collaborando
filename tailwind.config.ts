@@ -38,9 +38,7 @@ export default {
 			'neutral-900': 'hsl(var(--color-neutral-900-hsl) / <alpha-value>)',
 
 			// Background
-			background: 'hsl(var(--color-background-400-hsl) / <alpha-value>)',
-			'background-400': 'hsl(var(--color-background-400-hsl) / <alpha-value>)',
-			'background-500': 'hsl(var(--color-background-500-hsl) / <alpha-value>)',
+			background: 'var(--color-background)',
 
 			// Surfaces
 			'surface-400': 'hsl(var(--color-surface-400-hsl) / <alpha-value>)',

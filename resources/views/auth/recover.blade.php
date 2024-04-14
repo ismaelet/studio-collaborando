@@ -1,4 +1,4 @@
-<x-templates.form :title="$title">
+<x-form :title="$title">
 
     <x-slot name="body">
 
@@ -11,14 +11,14 @@
             </p>
 
             {{-- Email input --}}
-            <x-form.input type="email" name="email" placeholder="Indirizzo email" :value="session('email') ?: ''" required />
+            <x-inputs.input type="email" name="email" placeholder="Indirizzo email" :value="session('email') ?: ''" required />
 
             {{-- If the form hasn't been submitted or the email is not found --}}
             @if (session('not_found'))
                 {{-- Show error message if email is not found --}}
-                <x-form.input-warning>
+                <x-inputs.warning>
                     Non abbiamo trovato nessun account associato all'indirizzo email indicato
-                </x-form.input-warning>
+                </x-inputs.warning>
             @endif
         @else
             {{-- If the email is found --}}
@@ -36,11 +36,11 @@
 
         @if (!session('submitted') || session('not_found'))
             {{-- If the form hasn't been submitted or the email is not found --}}
-            <x-form.button type="submit">Recupera i dati</x-form.button>
+            <x-inputs.button type="submit">Recupera i dati</x-inputs.button>
         @endif
 
-        <x-form.button variant="secondary" :href="route('login')">{{ __('Back') }}</x-form.button>
+        <x-inputs.button variant="secondary" :href="route('login')">{{ __('Back') }}</x-inputs.button>
 
     </x-slot>
 
-</x-templates.form>
+</x-form>

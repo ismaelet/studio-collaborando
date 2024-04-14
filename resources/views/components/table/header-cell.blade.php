@@ -1,9 +1,14 @@
-@props(['column', 'orderBy', 'orderDirection'])
+@aware(['mainOrderBy', 'orderDirection'])
+
+@props(['column'])
 
 @php
     $hasName = isset($column['name']);
+    $mainOrderBy = $mainOrderBy ?? 'id';
+    $orderBy = request()->order_by ?: $mainOrderBy;
+    $orderDirection = request()->order_direction ?: 'desc';
     $active = $hasName && $orderBy == $column['name'];
-    $orderDirection = $active && $orderDirection == 'desc' ? 'asc' : 'desc';
+    $newOrderDirection = $active && $orderDirection == 'desc' ? 'asc' : 'desc';
 @endphp
 
 @pushOnce('styles')
@@ -18,19 +23,7 @@
     </style>
 @endpushOnce
 
-@pushOnce('scripts')
-    <script defer>
-        function sort_table(field) {
-            field.querySelectorAll('input').forEach((element) => {
-                element.checked = true
-            })
-
-            field.closest('form').submit()
-        }
-    </script>
-@endpushOnce
-
-<th x-data @click="sort_table($event.target)" @class([
+<th @class([
     'table-head-item',
     'h-12',
     'px-4',
@@ -42,15 +35,19 @@
     'transition-colors',
     'text-center' =>
         isset($column['type']) && in_array($column['type'], ['bool']),
+    'js-submit-form',
 ])>
     @if ($hasName)
-        <input type="radio" name="order_by" value="{{ $column['name'] }}" class="hidden">
-        <input type="radio" name="order_direction" value="{{ $orderDirection }}" class="hidden">
+        <form method="GET">
+            <input type="hidden" name="order_by" value="{{ $column['name'] }}">
+            <input type="hidden" name="order_direction" value="{{ $newOrderDirection }}">
+            <input type="hidden" name="search" value="{{ request()->search }}">
 
-        {{ $column['label'] }}
+            {{ $column['label'] }}
 
-        @if ($active)
-            {!! $orderDirection == 'asc' ? '&#x25BE;' : '&#x25B4;' !!}
-        @endif
+            @if ($active)
+                {!! $orderDirection == 'desc' ? '&#x25BE;' : '&#x25B4;' !!}
+            @endif
+        </form>
     @endif
 </th>

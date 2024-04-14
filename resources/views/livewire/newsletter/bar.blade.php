@@ -46,9 +46,9 @@
 
             @if (!$processing)
                 <div class="newsletter-bar__form">
-                    <x-form.input wire:model="email" type="email" class="newsletter-bar__input" name="email"
+                    <x-inputs.input wire:model="email" type="email" class="newsletter-bar__input" name="email"
                         placeholder="Indirizzo e-mail" />
-                    <x-form.button wire:click="subscribe" class="newsletter-bar__button">Iscriviti</x-form.button>
+                    <x-inputs.button wire:click="subscribe" class="newsletter-bar__button">Iscriviti</x-inputs.button>
                 </div>
             @endif
 

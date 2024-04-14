@@ -29,6 +29,6 @@
     </style>
 @endpushOnce
 
-<div class="form-group grid gap-x-2 gap-y-1">
+<div class="form-group grid gap-x-2 gap-y-1 grid-cols-1">
     {{ $slot }}
 </div>

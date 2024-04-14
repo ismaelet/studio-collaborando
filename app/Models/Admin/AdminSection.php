@@ -14,7 +14,7 @@ class AdminSection extends Model {
 	/**
 	 * The attributes that are mass assignable
 	 */
-	protected $fillable = ['category_id', 'name', 'subsection', 'type', 'order', 'hidden', 'for_supervisors'];
+	protected $fillable = ['category_id', 'name', 'resource', 'action', 'order', 'hidden', 'for_supervisors'];
 
 	/**
 	 * Get the category
@@ -26,31 +26,33 @@ class AdminSection extends Model {
 	/**
 	 * Get the url
 	 */
-	public function url(): ?string {
-		$routeName = implode('.', array_filter(['admin', $this->category->slug, $this->subsection, $this->type]));
+	public function routeName(): string {
+		return implode('.', ['admin', $this->resource, $this->action]);
+	}
+
+	/**
+	 * Get the url
+	 */
+	public function url(): string {
+		$routeName = $this->routeName();
 
 		if (Route::has($routeName)) {
 			return route($routeName);
 		}
 
-		return null;
+		return '/' . str_replace('.', '/', $routeName);
 	}
 
 	/**
 	 * Get the section by slug
 	 */
-	public static function findBySlug(string $slug): ?self {
-		$slug = str_replace('admin.', '', $slug);
-		$slug = explode('.', $slug);
-		$categorySlug = $slug[0];
-		$subsectionSlug = count($slug) > 2 ? $slug[1] : '';
-		$typeSlug = end($slug);
+	public static function findBySlug(string $routeName): ?self {
+		$routeName = explode('.', $routeName);
+		$resource = $routeName[1];
+		$action = $routeName[2];
 
-		return self::join('admin_categories', 'admin_sections.category_id', '=', 'admin_categories.id')
-			->where('admin_categories.slug', $categorySlug)
-			->where('admin_sections.subsection', $subsectionSlug)
-			->where('admin_sections.type', $typeSlug)
-			->select('admin_sections.*')
+		return self::where('resource', $resource)
+			->where('action', $action)
 			->first();
 	}
 }

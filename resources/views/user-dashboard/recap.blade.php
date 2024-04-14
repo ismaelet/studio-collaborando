@@ -7,7 +7,7 @@
     }, glob($directory . '/*.pdf'));
 @endphp
 
-<x-templates.user-dashboard>
+<x-user-dashboard>
 
     <x-user-dashboard.panel :icon="'user'" :title="'Account'">
         <div class="grid grid-cols-1 gap-6">
@@ -22,8 +22,8 @@
             </div>
 
             <div>
-                <x-form.button href="{{ route('user-dashboard.personal-data') }}" variant="secondary"
-                    size="small">Modifica</x-form.button>
+                <x-inputs.button href="{{ route('user-dashboard.personal-data') }}" variant="secondary"
+                    size="small">Modifica</x-inputs.button>
             </div>
         </div>
     </x-user-dashboard.panel>
@@ -46,4 +46,4 @@
         </div>
     </x-user-dashboard.panel>
 
-</x-templates.user-dashboard>
+</x-user-dashboard>

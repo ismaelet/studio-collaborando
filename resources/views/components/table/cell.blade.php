@@ -1,22 +1,27 @@
-@switch($column['type'] ?? 'default')
-    @case('int')
-        {{ $record->{$column['name']} ?: '0' }}
-    @break
+@props(['record', 'column'])
 
-    @case('float')
-        {{ $record->{$column['name']} ?: '0.00' }}
-    @break
+@php
+    $editRoute = str_replace('index', 'edit', request()->route()->getName());
+    $modelName = Str::singular($record->getTable());
+    $editRoute = Route::has($editRoute) ? route($editRoute, [$modelName => $record->id]) : null;
+@endphp
 
-    @case('date')
-        {{ $record->{$column['name']} ? $record->{$column['name']}->format('d/m/Y') : '-' }}
-    @break
+<td class="align-middle">
 
-    @case('bool')
-        <span class="h-4">
-            {!! embed_icon($record->{$column['name']} ? 'correct' : 'wrong') !!}
-        </span>
-    @break
+    @if (isset($column['name']))
+        @if ($editRoute)
+            <a href="{{ $editRoute }}">
+        @endif
 
-    @default
-        {{ $record->{$column['name']} ?: '-' }}
-@endswitch
+        <div class="p-4 font-medium">
+            <x-table.cell-value :$record :$column />
+        </div>
+
+        @if ($editRoute)
+            </a>
+        @endif
+    @else
+        <x-table.buttons :$record :$editRoute />
+    @endif
+
+</td>

@@ -61,7 +61,7 @@
     </script>
 @endpushOnce
 
-<x-templates.user-dashboard>
+<x-user-dashboard>
 
     @if ($purchased)
 
@@ -98,4 +98,4 @@
 
     @endif
 
-    </x-user-dashboard>
+</x-user-dashboard>

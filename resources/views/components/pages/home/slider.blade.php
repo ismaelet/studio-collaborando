@@ -120,7 +120,7 @@
             </div>
 
             <div data-on-enter-view data-enter-animation="direction: bottom, delay: 400">
-                <x-form.button href="#bio">Esplora</x-form.button>
+                <x-inputs.button href="#bio">Esplora</x-inputs.button>
             </div>
         </div>
 

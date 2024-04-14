@@ -6,7 +6,7 @@
     </style>
 @endpush
 
-<x-templates.empty>
+<x-layouts.empty>
     <div class="page-content grid-flow stack-content aling-content-center justify-items-center fa-center">
         <div class="page-background fill-all background-fill"></div>
 
@@ -18,4 +18,4 @@
             </div>
         </div>
     </div>
-</x-templates.empty>
+</x-layouts.empty>

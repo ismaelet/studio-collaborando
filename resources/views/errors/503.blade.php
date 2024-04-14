@@ -2,7 +2,7 @@
     $fullMaintenance = Request::route() ? false : true;
 @endphp
 
-<x-templates.empty>
+<x-layouts.empty>
     <div class="text-center grid content-center justify-items-center gap-8">
         <svg class="max-w-2xl" viewBox="0 0 400.47 252.01">
             <defs>
@@ -552,11 +552,11 @@
                 breve</x-typography.main-subheading>
 
             @if (!$fullMaintenance)
-                <x-form.button href="{{ auth()->check() ? route('user-dashboard') : route('login') }}"
+                <x-inputs.button href="{{ auth()->check() ? route('user-dashboard') : route('login') }}"
                     variant="secondary">
                     Indietro
-                </x-form.button>
+                </x-inputs.button>
             @endif
         </div>
     </div>
-</x-templates.empty>
+</x-layouts.empty>

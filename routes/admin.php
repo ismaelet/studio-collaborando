@@ -1,29 +1,27 @@
 <?php
 
-use App\Http\Controllers\Admin\HomeController;
-use App\Http\Controllers\Admin\Sections\NavigationCategoryController;
-use App\Http\Controllers\Admin\Sections\UserController;
+use App\Http\Controllers\Admin\Pages\DashboardController;
+use App\Http\Controllers\Admin\Resources\AdminCategoryController;
+use App\Http\Controllers\Admin\Resources\NewsletterSubscriberController;
+use App\Http\Controllers\Admin\Resources\UserController;
 use Illuminate\Support\Facades\Route;
 
 /**
  * Admin routes
  */
-Route::prefix('admin')->middleware('admin')->group(function () {
+Route::prefix('admin')->middleware('admin')->name('admin.')->group(function () {
 	// Admin dashboard home
-	Route::get('/dashboard', [HomeController::class, 'index'])->name('admin.dashboard');
-	Route::post('/dashboard', [HomeController::class, 'update']);
+	Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+	Route::post('/dashboard', [DashboardController::class, 'update']);
 
 	// Users
-	Route::controller(UserController::class)->group(function () {
-		Route::get('/users', 'index')->name('admin.users.list');
-		Route::get('/users/{id}', 'show')->name('admin.users.edit');
-		Route::post('/users/{id}', 'update');
-	});
+	Route::resource('users', UserController::class)
+		->only(['index', 'edit', 'update', 'destroy']);
+
+	// Newsletters
+	Route::resource('newsletter-subscribers', NewsletterSubscriberController::class)
+		->only(['index', 'destroy']);
 
 	// Settings - Categories
-	Route::controller(NavigationCategoryController::class)->group(function () {
-		Route::get('/settings/navigation-categories', 'index')->name('admin.settings.navigation-categories.list');
-		Route::get('/settings/navigation-categories/{id}', 'show')->name('admin.settings.navigation-categories.edit');
-		Route::post('/settings/navigation-categories/{id}', 'update');
-	});
+	Route::resource('admin-categories', AdminCategoryController::class);
 });
