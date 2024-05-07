@@ -1,6 +1,6 @@
 <x-layouts.admin-dashboard>
 
-    <x-dashboard.typography.main-heading title="Dashboard" />
+    <x-dashboard.typography.main-heading>Dashboard</x-dashboard.typography.main-heading>
 
     <div class="grid gap-4 mt-8">
         {{-- Row 1 --}}

@@ -78,7 +78,7 @@ trait ResourceIndexController {
 	 * @return array The order field.
 	 */
 	private function orderBy(Request $request): array {
-		if ($request->has('order_by')) {
+		if ($request->order_by) {
 			return $this->orderBy = [$request->order_by => $this->orderDirection($request)];
 		}
 
@@ -92,7 +92,7 @@ trait ResourceIndexController {
 	 * @return string The order direction.
 	 */
 	private function orderDirection(Request $request): string {
-		if ($request->has('order_direction')) {
+		if ($request->order_direction) {
 			return $request->order_direction;
 		}
 

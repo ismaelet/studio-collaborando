@@ -7,10 +7,6 @@
     'buttons',
 ])
 
-@php
-    $pageSize = count($records);
-@endphp
-
 @pushOnce('styles')
     <style>
         .table-container {
@@ -55,10 +51,10 @@
         @endif
 
         {{-- Top pagination --}}
-        <x-pagination :$recordCount :$pageSize />
+        <x-pagination :$recordCount />
 
         {{-- Bottom pagination --}}
-        <x-pagination :$recordCount :$pageSize />
+        <x-pagination :$recordCount />
     </form>
 
     {{-- Table --}}

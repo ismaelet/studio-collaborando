@@ -2,7 +2,7 @@
 
 @php
     $currentPage = request()->page ?? 1;
-    $pageCount = $pageSize ? ceil($recordCount / $pageSize) : 1;
+    $pageCount = ceil($recordCount / $pageSize);
     $continuousStart = $currentPage < 5;
     $countinuousEnd = $currentPage > $pageCount - 4;
     $dynamicStart = $continuousStart ? 2 : $currentPage - 1;
