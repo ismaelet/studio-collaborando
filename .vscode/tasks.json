@@ -2,28 +2,36 @@
 	"version": "2.0.0",
 	"tasks": [
 		{
-			"label": "Artisan Migrate",
+			"label": "Artisan Docker Command",
 			"type": "shell",
-			"command": "env",
-			"args": ["DB_HOST=127.0.0.1", "php", "artisan", "migrate"],
+			"command": "docker",
+			"args": ["exec", "laravel", "php", "artisan", "${input:command}"],
 			"group": "build",
 			"problemMatcher": []
 		},
 		{
-			"label": "Artisan Rollback",
+			"label": "Artisan: Migrate",
 			"type": "shell",
-			"command": "env",
-			"args": ["DB_HOST=127.0.0.1", "php", "artisan", "migrate:rollback"],
+			"command": "docker",
+			"args": ["exec", "studio-collaborando-laravel", "php", "artisan", "migrate"],
 			"group": "build",
 			"problemMatcher": []
 		},
 		{
-			"label": "Artisan: Create Model",
+			"label": "Artisan: Rollback",
 			"type": "shell",
-			"command": "php",
-			"args": ["artisan", "make:model", "${input:modelName}"],
+			"command": "docker",
+			"args": ["exec", "studio-collaborando-laravel", "php", "artisan", "migrate:rollback"],
+			"group": "build",
+			"problemMatcher": []
+		},
+		{
+			"label": "Artisan: Run Tests",
+			"type": "shell",
+			"command": "docker",
+			"args": ["exec", "studio-collaborando-laravel", "php", "artisan", "test"],
 			"group": {
-				"kind": "build",
+				"kind": "test",
 				"isDefault": false
 			},
 			"presentation": {
@@ -31,10 +39,23 @@
 			}
 		},
 		{
-			"label": "Artisan: Create Controller",
+			"label": "Artisan: Get Route List",
 			"type": "shell",
 			"command": "php",
-			"args": ["artisan", "make:controller", "${input:controllerName}Controller"],
+			"args": ["artisan", "route:list", "--except-vendor"],
+			"group": {
+				"kind": "test",
+				"isDefault": false
+			},
+			"presentation": {
+				"reveal": "always"
+			}
+		},
+		{
+			"label": "Artisan: Make Controller",
+			"type": "shell",
+			"command": "php",
+			"args": ["artisan", "make:controller", "${input:name}Controller"],
 			"group": {
 				"kind": "build",
 				"isDefault": true
@@ -44,13 +65,65 @@
 			}
 		},
 		{
-			"label": "Artisan: Create Migration",
+			"label": "Artisan: Make Migration",
 			"type": "shell",
 			"command": "php",
-			"args": ["artisan", "make:migration", "${input:migrationName}"],
+			"args": ["artisan", "make:migration", "${input:name}"],
 			"group": {
 				"kind": "build",
 				"isDefault": false
+			},
+			"presentation": {
+				"reveal": "always"
+			}
+		},
+		{
+			"label": "Artisan: Make Model",
+			"type": "shell",
+			"command": "php",
+			"args": ["artisan", "make:model", "${input:name}"],
+			"group": {
+				"kind": "build",
+				"isDefault": false
+			},
+			"presentation": {
+				"reveal": "always"
+			}
+		},
+		{
+			"label": "Artisan: Make Test",
+			"type": "shell",
+			"command": "php",
+			"args": ["artisan", "make:test", "${input:name}Test"],
+			"group": {
+				"kind": "build",
+				"isDefault": false
+			},
+			"presentation": {
+				"reveal": "always"
+			}
+		},
+		{
+			"label": "Artisan: Make View",
+			"type": "shell",
+			"command": "php",
+			"args": ["artisan", "make:view", "${input:name}"],
+			"group": {
+				"kind": "build",
+				"isDefault": false
+			},
+			"presentation": {
+				"reveal": "always"
+			}
+		},
+		{
+			"label": "Artisan: Make Filament Resource",
+			"type": "shell",
+			"command": "php",
+			"args": ["artisan", "make:filament-resource", "${input:name}"],
+			"group": {
+				"kind": "build",
+				"isDefault": true
 			},
 			"presentation": {
 				"reveal": "always"
@@ -59,22 +132,14 @@
 	],
 	"inputs": [
 		{
-			"id": "modelName",
+			"id": "name",
 			"type": "promptString",
-			"default": "Example",
-			"description": "Enter the model name"
+			"description": "Enter the name here"
 		},
 		{
-			"id": "controllerName",
+			"id": "command",
 			"type": "promptString",
-			"default": "ExampleController",
-			"description": "Enter the controller name"
-		},
-		{
-			"id": "migrationName",
-			"type": "promptString",
-			"default": "create_example_table",
-			"description": "Enter the migration name"
+			"description": "Enter the artisan command here"
 		}
 	]
 }

@@ -81,11 +81,6 @@ Route::middleware('guest')->name('auth.reset')->group(function () {
  */
 if (file_exists(__DIR__ . '/user-dashboard.php')) include_once __DIR__ . '/user-dashboard.php';
 
-/**
- * Admin routes
- */
-if (file_exists(__DIR__ . '/admin.php')) include_once __DIR__ . '/admin.php';
-
 // Misc
 Route::get('/privacy', function () {
 	return view('home');

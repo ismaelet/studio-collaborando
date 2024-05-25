@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Models\Ecommerce\Cart;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -38,6 +39,19 @@ class User extends Authenticatable {
 		'email_verified_at' => 'datetime',
 		'password' => 'hashed',
 	];
+
+	/**
+	 * * Accessors
+	 */
+
+	/**
+	 * Get the username
+	 */
+	public function name(): Attribute {
+		return Attribute::make(
+			get: fn (): string => $this->username ?: $this->email,
+		);
+	}
 
 	/**
 	 * Get the user's full name
