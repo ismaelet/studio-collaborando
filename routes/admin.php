@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Route;
 /**
  * Admin routes
  */
-Route::prefix('legacy-admin')->middleware('admin')->name('legacy-admin.')->group(function () {
+Route::prefix('admin')->middleware('admin')->name('admin.')->group(function () {
 	// Admin dashboard home
 	Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 	Route::post('/dashboard', [DashboardController::class, 'update']);

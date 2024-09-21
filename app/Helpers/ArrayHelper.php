@@ -6,10 +6,6 @@ class ArrayHelper {
 
 	/**
 	 * Explode the last occurrence of a string in a string
-	 * 
-	 * @param string $separator The separator to explode the string by
-	 * @param string|null $string The string to explode
-	 * @return array The exploded string
 	 */
 	public static function explodeLast(string $separator, ?string $string): array {
 		$newArray = explode($separator, strrev($string), 2);

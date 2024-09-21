@@ -81,6 +81,11 @@ Route::middleware('guest')->name('auth.reset')->group(function () {
  */
 if (file_exists(__DIR__ . '/user-dashboard.php')) include_once __DIR__ . '/user-dashboard.php';
 
+/**
+ * Admin routes
+ */
+if (file_exists(__DIR__ . '/admin.php')) include_once __DIR__ . '/admin.php';
+
 // Misc
 Route::get('/privacy', function () {
 	return view('home');
@@ -88,15 +93,23 @@ Route::get('/privacy', function () {
 
 // Newsletter
 Route::get('/sendNewsletter', function () {
-	$newsletterData = Newsletter::where('sent', 0)->first();
-	$subscribers = Subscriber::all();
+	$newsletterData = Newsletter::orderByDesc('id')->first();
 
-	if ($newsletterData->count()) {
+	if ($newsletterData) {
+		$subscribers = Subscriber::where('last_sent_newsletter_id', '<', $newsletterData->id)
+			->orWhereNull('last_sent_newsletter_id')
+			->get();
+
 		foreach ($subscribers as $subscriber) {
-			Mail::to($subscriber->email)->send(new Mailer($subscriber, $newsletterData->id));
+			$mailer = Mail::to($subscriber->email);
+
+			try {
+				$mailer->send(new Mailer($subscriber, $newsletterData->id));
+				$subscriber->update(['last_sent_newsletter_id' => $newsletterData->id]);
+			} catch (Exception $e) {
+				$errorMessage = $e->getMessage();
+				echo "There was an issue sending the email: " . $errorMessage . "<br><br>";
+			}
 		}
 	}
-
-	$newsletterData->sent = 1;
-	$newsletterData->save();
 });

@@ -12,7 +12,12 @@ class Subscriber extends Model {
 	use HasFactory;
 
 	protected $table = 'newsletter_subscribers';
-	protected $fillable = ['email', 'first_name', 'last_name'];
+	protected $fillable = [
+		'email',
+		'first_name',
+		'last_name',
+		'last_sent_newsletter_id'
+	];
 
 	/**
 	 * Create a new subscriber and send them a welcome email.

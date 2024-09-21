@@ -30,14 +30,14 @@ return [
 	],
 
 	'header_navigation_links' => [
-		['type' => 'link', 'label' => 'Home', 'route' => 'home', 'location_tag' => 'home', 'admin_only' => false],
-		['type' => 'link', 'label' => 'Servizi', 'route' => 'services', 'location_tag' => 'services', 'admin_only' => false],
-		['type' => 'link', 'label' => 'Pet Therapy', 'route' => 'pet-therapy', 'location_tag' => 'pet-therapy', 'admin_only' => false],
-		['type' => 'link', 'label' => 'Videocorsi', 'route' => 'courses', 'location_tag' => 'courses', 'admin_only' => false],
-		['type' => 'link', 'label' => 'Contatti', 'route' => 'contacts', 'location_tag' => 'contacts', 'admin_only' => false],
-		['type' => 'link', 'label' => 'Gestione', 'url' => 'admin', 'location_tag' => 'admin', 'admin_only' => true],
-		['type' => 'button', 'label' => 'Login', 'route' => 'login', 'location_tag' => 'login', 'auth' => false, 'admin_only' => false],
-		['type' => 'button', 'label' => '{{ $username }}', 'route' => 'user-dashboard', 'location_tag' => 'user-dashboard', 'auth' => true, 'admin_only' => false],
+		['type' => 'link', 'label' => 'Home', 'url' => 'home', 'location_tag' => 'home', 'admin_only' => false],
+		['type' => 'link', 'label' => 'Servizi', 'url' => 'services', 'location_tag' => 'services', 'admin_only' => false],
+		['type' => 'link', 'label' => 'Pet Therapy', 'url' => 'pet-therapy', 'location_tag' => 'pet-therapy', 'admin_only' => false],
+		['type' => 'link', 'label' => 'Videocorsi', 'url' => 'courses', 'location_tag' => 'courses', 'admin_only' => false],
+		['type' => 'link', 'label' => 'Contatti', 'url' => 'contacts', 'location_tag' => 'contacts', 'admin_only' => false],
+		['type' => 'link', 'label' => 'Gestione', 'url' => 'admin.dashboard', 'location_tag' => 'admin', 'admin_only' => true],
+		['type' => 'button', 'label' => 'Login', 'url' => 'login', 'location_tag' => 'login', 'auth' => false, 'admin_only' => false],
+		['type' => 'button', 'label' => '{{ $username }}', 'url' => 'user-dashboard', 'location_tag' => 'user-dashboard', 'auth' => true, 'admin_only' => false],
 	],
 
 	'footer_navigation_links' => [
