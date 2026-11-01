@@ -6,7 +6,7 @@ import path from "path";
 
 export default defineConfig({
   plugins: [
-    laravel({ input: ["resources/css/main.css", "resources/js/app.ts"], refresh: true }),
+    laravel({ input: ["resources/css/app.css", "resources/js/app.ts"], refresh: true }),
     svelte(),
     tailwindcss(),
   ],

@@ -1,14 +1,13 @@
-import { createContext, useContext } from "react";
+export type NavigationLink = {
+  label: string;
+  route: string;
+  locationTag: string;
+};
 
-type HeaderContextValue = {
-  currentLocation?: string;
-  navigationIsOpen: boolean;
+export type HeaderContextValue = {
+  readonly currentLocation?: string;
+  readonly navigationIsOpen: boolean;
   toggleNavigation: (open?: boolean) => void;
 };
 
-export const HeaderContext = createContext<HeaderContextValue>({
-  navigationIsOpen: false,
-  toggleNavigation: () => {},
-});
-
-export const useHeader = () => useContext(HeaderContext);
+export const HEADER_CONTEXT = Symbol("header-context");

@@ -2,7 +2,7 @@
 
 ## Stack and architecture
 
-- Laravel, PHP 8.5, Livewire, Blade, Tailwind CSS 4, Vite, Alpine.js, and vanilla TypeScript/JavaScript.
+- Laravel, PHP 8.5, Inertia.js, Svelte, TypeScript, Tailwind CSS 4, and Vite.
 
 ## Project commands
 
@@ -16,7 +16,6 @@
 
 - PHP syntax: `cd app && php -l app/Http/Controllers/ExampleController.php`
 - Targeted tests: `cd app && php artisan test --filter=TestName`
-- Blade compilation: `cd app && php artisan view:cache`
 - PHP formatting check: `cd app && vendor/bin/pint --test`
 
 ### Frontend
@@ -28,17 +27,17 @@
 - Use Oxfmt for supported frontend files and Oxlint for JavaScript/TypeScript linting.
 - Use Laravel Pint for PHP formatting. Do not run Oxfmt or Oxlint on PHP files.
 
-## Livewire and Blade
+## Inertia and Svelte
 
-- Anonymous components: `app/resources/views/components/`; class-backed components: `app/app/View/components/`.
-- Prefer Livewire for server-driven interactive components and Blade for rendering.
-- Keep database queries and business logic out of Blade templates.
-- Reuse existing Blade components before writing new markup, especially layouts, forms, buttons, typography, cards, and pagination.
+- Pages: `app/resources/js/pages/`; components: `app/resources/js/components/`; layouts: `app/resources/js/layouts/`.
+- Prefer Inertia for navigation and server-provided page data, and Svelte for interactive components.
+- Keep database queries and business logic out of Svelte components.
+- Reuse existing Svelte components before writing new markup, especially layouts, forms, buttons, typography, cards, and pagination.
 - Use existing component APIs rather than duplicating markup, styling, or behavior.
-- Avoid duplicating state between Livewire and JavaScript unless necessary.
-- For link elements `<a href="">` styled like buttons, use the `<x-button href=""/>` component; don't recreate the button style on a native link.
-- For smaller buttons, add the `size="sm"` attribute to the `<x-button/>` component.
-- Don't place any class, including size classes, on icon components inside `<x-button/>` components.
+- Avoid duplicating state between Inertia props and Svelte unless necessary.
+- For links styled like buttons, reuse the existing button component rather than duplicating styles.
+- For smaller buttons, use the button component's `size="sm"` prop.
+- Don't place styling or size classes on icons inside button components.
 
 ## Validation
 

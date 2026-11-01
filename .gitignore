@@ -2,6 +2,7 @@
 .s3cfg
 
 /.vscode
+/.resources
 
 /app/node_modules
 /app/public/build

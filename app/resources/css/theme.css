@@ -1,29 +1,55 @@
 /* Assets */
 @font-face {
-  font-family: "FontName";
+  font-family: "Poppins";
+  font-weight: 400;
+  font-display: swap;
+  src: url("../fonts/Poppins-Regular.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Manrope";
   font-weight: 100 900;
   font-display: swap;
-  src: url("../fonts/FontName.ttf") format("truetype");
+  src: url("../fonts/Manrope.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Libre Caslon Display";
+  font-weight: 400;
+  font-display: swap;
+  src: url("../fonts/LibreCaslonDisplay-Regular.ttf") format("truetype");
 }
 
 /* Theme */
 @theme {
   /* Theme: Colors */
-  --color-background-400: var(--color-white);
+  --color-background-400: #fff;
+  --color-background-500: #f0f3f5;
 
-  --color-surface-400: var(--color-white);
+  --color-surface-400: #faf7f5;
+  --color-surface-500: #f0f0f2;
 
-  --color-heading-400: var(--color-neutral-400);
+  --color-heading-400: #493c35;
 
-  --color-text-400: var(--color-slate-600);
+  --color-text-400: #6e5a50;
 
   --color-border-400: var(--color-slate-300);
 
-  --color-primary-400: hsl(30deg 100% 50%);
+  --color-primary-100: #f0f3f5;
+  --color-primary-200: #d2dae0;
+  --color-primary-300: #a5b5c0;
+  --color-primary-400: #7b93a3;
+  --color-primary-500: #495c69;
+
+  --color-secondary-400: #f7eeee;
+  --color-secondary-400: #f2d4d6;
+  --color-secondary-400: #db8a8f;
+  --color-secondary-400: #b46469;
 
   /* Theme: Fonts */
-  --font-heading: "FontName", system-ui, sans-serif;
-  --font-sans: "FontName", system-ui, sans-serif;
+  --font-heading: "Poppins", system-ui, sans-serif;
+  --font-sans: "Manrope", system-ui, sans-serif;
+  --font-serif: "Libre Caslon Display", system-ui, serif;
 
   /* Theme: Spacing */
   --spacing-breakout: 1440px;

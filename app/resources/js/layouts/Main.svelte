@@ -1,8 +1,8 @@
 <script lang="ts">
   import type { Snippet } from "svelte";
 
-  // import Header from "@/components/header/Header.svelte";
-  // import Footer from "@/components/footer/Footer.svelte";
+  import Header from "@/components/header/Header.svelte";
+  import Footer from "@/components/footer/Footer.svelte";
 
   let {
     location,
@@ -14,7 +14,7 @@
 </script>
 
 <div class="view-wrapper">
-  <!-- <Header currentLocation={location} /> -->
+  <Header currentLocation={location} />
 
   <main>
     <div class="content-grid">
@@ -23,7 +23,7 @@
   </main>
 </div>
 
-<!-- <Footer /> -->
+<Footer />
 
 <style>
   .view-wrapper {

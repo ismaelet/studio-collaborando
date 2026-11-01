@@ -10,7 +10,10 @@
     "resolveJsonModule": true,
     "skipLibCheck": true,
     "noEmit": true,
-    "types": ["vite/client"]
+    "types": ["vite/client"],
+    "paths": {
+      "@/*": ["./resources/js/*"]
+    }
   },
-  "include": ["resources/js/app.ts", "resources/js/**/*.svelte", "svelte.config.js"]
+  "include": ["resources/js/**/*.ts", "resources/js/**/*.svelte", "svelte.config.js"]
 }

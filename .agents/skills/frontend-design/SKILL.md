@@ -1,6 +1,7 @@
----
+***
+
 name: frontend-design
-description: Implement and refactor frontend styling, CSS, Tailwind CSS 4, Figma designs, design tokens, layouts, responsive behavior, and visual consistency in the Laravel, Blade, Livewire, and Alpine.js application. Use when tasks involve styling, design implementation, layout changes, Figma fidelity, or visual verification.
+description: Implement and refactor frontend styling, CSS, Tailwind CSS 4, Figma designs, design tokens, layouts, responsive behavior, and visual consistency in the Laravel, Inertia.js, and Svelte application. Use when tasks involve styling, design implementation, layout changes, Figma fidelity, or visual verification.
 ---
 
 # Frontend Design
@@ -27,8 +28,8 @@ Apply these instructions when implementing or modifying:
 - Prefer semantic tokens over colors tied to a particular visual appearance.
 - Respect existing light/dark theme implementations.
 - Avoid redundant `dark:` overrides when tokens already handle themes.
-- Don't apply text size like `text-2xl`, `text-lg`, to `<x-heading>` components; use the `variant` prop instead.
-- Don't apply radius like `rounded-lg`, `rounded-full`, to elements with the `card` class.
+- Don't apply text size classes like `text-2xl` or `text-lg` to heading components; use the `variant` prop instead.
+- Don't apply radius classes like `rounded-lg` or `rounded-full` to elements with the `card` class.
 
 ## Figma fidelity
 
@@ -36,9 +37,9 @@ When implementing a design from Figma:
 
 - Treat the provided Figma design as the primary visual reference.
 - Respect the intended layout, proportions, typography, spacing, colors, and responsive behavior.
-- Reuse existing design tokens and components whenever possible.
+- Reuse existing design tokens and Svelte components whenever possible.
 - Preserve established layout utilities and wrappers.
-- NEVER add horizontal padding, width constraints, or centering utilities to page sections, this is already handled by full-width, breakout and content-grid utilities defined in `base.css`.
+- NEVER add horizontal padding, width constraints, or centering utilities to page sections; this is already handled by full-width, breakout, and content-grid utilities defined in `base.css`.
 - Do NOT add `max-w-*`, `mx-auto`, or extra `px-*` merely to constrain or center content.
 - If the design is ambiguous, prefer existing project conventions instead of inventing new ones.
 
