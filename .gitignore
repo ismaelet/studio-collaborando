@@ -1,8 +1,10 @@
 .env
+.env.*
 .s3cfg
 
-/.vscode
-/.resources
+/.backups/
+/.resources/
+/.vscode/
 
 /app/node_modules
 /app/public/build
