@@ -1,9 +1,13 @@
 <?php
 
+use App\Http\Middleware\Admin;
+use App\Http\Middleware\HandleInertiaRequests;
 use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Configuration\Exceptions;
 use Illuminate\Foundation\Configuration\Middleware;
 use Illuminate\Http\Request;
+use Inertia\Inertia;
+use Symfony\Component\HttpKernel\Exception\HttpException;
 
 return Application::configure(basePath: dirname(__DIR__))
     ->withRouting(
@@ -12,9 +16,16 @@ return Application::configure(basePath: dirname(__DIR__))
         health: '/up',
     )
     ->withMiddleware(function (Middleware $middleware): void {
-        //
+        $middleware->web(append: [HandleInertiaRequests::class]);
+        $middleware->alias(['admin' => Admin::class]);
     })
     ->withExceptions(function (Exceptions $exceptions): void {
+        $exceptions->render(function (HttpException $exception, Request $request) {
+            if (! $request->expectsJson() && in_array($exception->getStatusCode(), [404, 503], true)) {
+                return Inertia::render('Error', ['status' => $exception->getStatusCode()])
+                    ->toResponse($request)->setStatusCode($exception->getStatusCode());
+            }
+        });
         $exceptions->shouldRenderJsonWhen(
             fn (Request $request) => $request->is('api/*') || $request->expectsJson(),
         );

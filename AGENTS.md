@@ -1,4 +1,3 @@
-
 # Project Instructions
 
 ## Stack and architecture
@@ -31,7 +30,7 @@
 
 ## Livewire and Blade
 
-- Anonymous components: `app/resources/views/components/`; class-backed components: `app/app/View/Components/`.
+- Anonymous components: `app/resources/views/components/`; class-backed components: `app/app/View/components/`.
 - Prefer Livewire for server-driven interactive components and Blade for rendering.
 - Keep database queries and business logic out of Blade templates.
 - Reuse existing Blade components before writing new markup, especially layouts, forms, buttons, typography, cards, and pagination.

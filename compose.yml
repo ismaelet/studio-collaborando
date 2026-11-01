@@ -55,12 +55,13 @@ services:
       context: .
       dockerfile: docker/app/Dockerfile
       target: deps
+    user: "${UID:-1000}:${GID:-1000}"
     working_dir: /var/www/html
     volumes:
       - ./app:/var/www/html
-    command: /bin/bash -c "pnpm install && pnpm run dev --host 0.0.0.0"
+    command: /bin/bash -c "pnpm install --frozen-lockfile && pnpm run dev --host 0.0.0.0"
     ports:
-      - "5173:5173"
+      - 5173:5173
 
   db:
     image: mariadb:12.3
@@ -85,4 +86,3 @@ configs:
     file: ./docker/app/Caddyfile
   php_config:
     file: ./docker/app/app.ini
-

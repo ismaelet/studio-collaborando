@@ -4,24 +4,29 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Inertia\Inertia;
 
-class LogoutController extends Controller {
+class LogoutController extends Controller
+{
+    /**
+     * Render the logout page
+     */
+    public function index()
+    {
+        return Inertia::render('Auth/Logout')
+            ->with('locationTag', 'logout')
+            ->with('title', 'Logout');
+    }
 
-	/**
-	 * Render the logout page
-	 */
-	public function index() {
-		return view('auth.logout')
-			->with('locationTag', 'logout')
-			->with('title', 'Logout');
-	}
+    /**
+     * Authenticate the user
+     */
+    public function store(Request $request)
+    {
+        auth()->logout();
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
 
-	/**
-	 * Authenticate the user
-	 */
-	public function store(Request $request) {
-		auth()->logout();
-
-		return redirect()->route('login');
-	}
+        return redirect()->route('login');
+    }
 }
