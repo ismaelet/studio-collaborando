@@ -1,0 +1,88 @@
+name: studio-collaborando
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: docker/app/Dockerfile
+      target: base
+    ports:
+      - 8000:80
+    working_dir: /var/www/html
+    configs:
+      - source: caddy_config
+        target: /etc/frankenphp/Caddyfile
+      - source: php_config
+        target: /usr/local/etc/php/conf.d/app.ini
+    volumes:
+      - ./app:/var/www/html
+    environment:
+      APP_NAME: Studio Collaborando
+      APP_URL: http://localhost:8000
+      APP_ENV: local
+      APP_DEBUG: true
+      APP_LOCALE: it
+      APP_FALLBACK_LOCALE: en
+      APP_KEY: ${APP_KEY:?APP_KEY is required}
+
+      SESSION_DRIVER: file
+      CACHE_STORE: file
+
+      DB_CONNECTION: mysql
+      DB_HOST: db
+      DB_PORT: 3306
+      DB_DATABASE: project_database
+      DB_USERNAME: root
+      DB_PASSWORD: rootpassword
+
+      # MAIL_MAILER: smtp
+      # MAIL_HOST: smtp.domain.email
+      # MAIL_PORT: 465
+      # MAIL_USERNAME: noreply@laravel-app.example.com
+      # MAIL_PASSWORD: ${MAIL_PASSWORD:?MAIL_PASSWORD is required}
+      # MAIL_ENCRYPTION: SSL
+      # MAIL_FROM_ADDRESS: noreply@laravel-app.example.com
+      # MAIL_FROM_NAME: Laravel App
+
+      # SENTRY_LARAVEL_DSN: null
+      # SENTRY_TRACES_SAMPLE_RATE: 0
+    depends_on:
+      db:
+        condition: service_healthy
+
+  vite:
+    build:
+      context: .
+      dockerfile: docker/app/Dockerfile
+      target: deps
+    working_dir: /var/www/html
+    volumes:
+      - ./app:/var/www/html
+    command: /bin/bash -c "pnpm install && pnpm run dev --host 0.0.0.0"
+    ports:
+      - "5173:5173"
+
+  db:
+    image: mariadb:12.3
+    environment:
+      MARIADB_DATABASE: project_database
+      MARIADB_ROOT_PASSWORD: rootpassword
+    volumes:
+      - db:/var/lib/mysql
+    ports:
+      - 3306:3306
+    healthcheck:
+      test: ["CMD", "healthcheck.sh", "--connect", "--innodb_initialized"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+volumes:
+  db:
+
+configs:
+  caddy_config:
+    file: ./docker/app/Caddyfile
+  php_config:
+    file: ./docker/app/app.ini
+
