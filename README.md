@@ -1,35 +1,145 @@
 # Studio Collaborando
 
-Laravel 13 with Inertia 2, Svelte 5, Tailwind CSS 4, and Vite.
+Official website for **Studio Collaborando**, built with Laravel, Inertia.js, Svelte, and Tailwind CSS.
 
-Run repository-level Docker Compose commands from this directory. The Laravel application and frontend package live in `app/`.
+The project provides a modern, responsive web experience, combining Laravel's backend capabilities with Svelte's component-based frontend architecture.
 
-```sh
-cd app
+## Technology Stack
+
+### Backend
+- **PHP** — Server-side programming language.
+- **Laravel** — Application framework, routing, validation, and backend logic.
+- **MySQL / MariaDB** — Relational database.
+- **Filament** — Administration panel and content management.
+
+### Frontend
+- **Svelte** — Reactive user interface components.
+- **Inertia.js** — Integration between Laravel and the frontend without a separate REST API.
+- **TypeScript** — Type-safe frontend development.
+- **Tailwind CSS 4** — Utility-first styling and design system.
+- **Vite** — Frontend development server and asset bundling.
+
+### Development Tools
+- **Composer** — PHP dependency management.
+- **pnpm** — JavaScript package management.
+- **Docker** — Containerized development environment.
+- **Git** — Version control.
+
+## Project Structure
+
+The Laravel application is located in the `app/` directory.
+
+```text
+studio-collaborando/
+├── app/
+│   ├── app/                 # Laravel application logic
+│   ├── bootstrap/           # Laravel bootstrap
+│   ├── config/              # Application configuration
+│   ├── database/            # Migrations and database files
+│   ├── public/              # Public entry point and assets
+│   ├── resources/
+│   │   ├── css/             # Stylesheets and design tokens
+│   │   ├── js/              # Svelte components and TypeScript
+│   │   └── views/           # Blade templates
+│   ├── routes/              # Application routes
+│   └── tests/               # Automated tests
+├── docker-compose.yml       # Container configuration
+└── README.md
+```
+
+## Local Development
+
+### Requirements
+
+- PHP and Composer
+- Node.js and pnpm
+- MySQL or MariaDB
+- Docker and Docker Compose (for containerized development)
+
+### Installation
+
+Clone the repository and enter the Laravel application directory.
+
+```bash
+git clone <repository-url>
+cd studio-collaborando/app
+```
+
+Install the backend and frontend dependencies:
+
+```bash
+composer install
+pnpm install
+```
+
+Create a local environment configuration:
+
+```bash
+cp .env.example .env
+php artisan key:generate
+```
+
+Configure the database connection in `.env`, then run the migrations:
+
+```bash
+php artisan migrate
+```
+
+### Development Server
+
+Start the Laravel application:
+
+```bash
+php artisan serve
+```
+
+In another terminal, start the Vite development server:
+
+```bash
 pnpm dev
+```
+
+## Production Build
+
+Compile and optimize frontend assets:
+
+```bash
 pnpm build
-pnpm check
+```
+
+The compiled assets are generated in Laravel's public build directory.
+
+## Code Quality
+
+The project uses automated formatting and linting tools to maintain consistent code quality.
+
+Run the scripts defined in `package.json`:
+
+```bash
+pnpm format
 pnpm lint
 ```
 
-With the existing containers, use `docker compose exec vite pnpm build` and `docker compose exec vite pnpm check` from the repository root.
+Run Laravel tests:
 
-## Frontend
-
-`app/resources/js/app.ts` boots Inertia and resolves Svelte pages in `resources/js/Pages/`. The only Blade template used to render the migrated web UI is `resources/views/app.blade.php`, Inertia's HTML document shell. Email templates remain Blade because they render on the server for mail clients.
-
-The public routes (`/`, `/home`, `/services`, `/pet-therapy`, `/courses`, `/contacts`, `/privacy`) render `Home.svelte`, preserving their previous shared homepage behavior. Authentication routes render the pages under `Pages/Auth/`; profile routes use `Pages/UserDashboard/`; admin routes use `Pages/Admin/`. Not-found and maintenance responses use `Error.svelte`.
-
-Shared Svelte layouts and components replace the route-used Blade layouts, navigation, footer, buttons, inputs, forms, panels, tables, pagination, newsletter bar, homepage slider, and dashboard widgets. The former Livewire newsletter interaction is handled by `POST /newsletter`. Forms use Inertia's form store, with Laravel validation and redirects. Course access, file discovery, and dashboard queries run in controllers. `HandleInertiaRequests` shares public site configuration, safe user fields, and flash messages.
-
-Legacy Blade templates and the old Livewire class remain in the repository as unused migration references; the migrated routes do not render them. Legacy controllers not referenced in the route files have not been migrated. The existing `POST /admin/dashboard` route still references an unimplemented `update` action; there is no corresponding submitting control in the migrated dashboard.
-
-## Validation
-
-```sh
-docker compose exec -e APP_ENV=testing app php artisan test --filter=InertiaMigrationTest
-docker compose exec vite pnpm check
-docker compose exec vite pnpm build
+```bash
+php artisan test
 ```
 
-Migration tests create isolated SQLite in-memory tables; they do not modify the running application's database. They cover public and authenticated Inertia responses, validation, registration, login/logout, password recovery/reset, profile/password updates, course access, newsletter subscriptions, admin resource actions, dashboard props, and error responses.
+## Architecture
+
+The application follows a server-driven architecture using **Laravel and Inertia.js**.
+
+Laravel handles routing, data access, validation, and server-side operations, while Inertia.js passes page data to the Svelte frontend.
+
+Svelte components handle interactive user interfaces, and Tailwind CSS provides consistent styling across the website.
+
+## Security
+
+Environment configurations, credentials, database backups, and local development resources are excluded from version control.
+
+Sensitive configuration must be supplied through environment variables and should never be committed to the repository.
+
+## License
+
+All rights reserved. This project is not licensed for redistribution or reuse without permission.
